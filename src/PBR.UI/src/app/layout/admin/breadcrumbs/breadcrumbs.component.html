@@ -1,0 +1,26 @@
+<!-- Page-header start -->
+<!-- Caption Breadcrumb card start -->
+<div class="" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+  <app-card [blockClass]="'caption-breadcrumb'" *ngIf="last">
+    <div class="breadcrumb-header">
+      <span class="d-block">
+        <h4>{{ breadcrumb.label }}</h4>
+      </span>
+      <span *ngIf="breadcrumb.caption">{{ breadcrumb.caption }}</span>
+    </div>
+    <div class="page-header-breadcrumb">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="'/'">
+            <i class="icofont icofont-home"></i>
+          </a>
+        </li>
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs;">
+          <a [ngClass]="breadcrumb.status === false ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
+        </li>
+      </ul>
+    </div>
+  </app-card>
+</div>
+<!-- Caption Breadcrumb card end -->
+<!-- Page-header end -->
