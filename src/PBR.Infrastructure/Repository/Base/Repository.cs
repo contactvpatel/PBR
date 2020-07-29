@@ -22,7 +22,14 @@ namespace PBR.Infrastructure.Repository.Base
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            try{
+                return await _dbContext.Set<T>().ToListAsync();
+            }
+            catch(Exception EX)
+            {
+                throw EX;
+            }
+            
         }
 
         public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)

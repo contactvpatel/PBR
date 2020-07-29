@@ -15,7 +15,8 @@ const routes: Routes = [
       }, {
         path: 'dashboard',
         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
-      }, {
+      },
+      {
         path: 'widget',
         loadChildren: () => import('./pages/widget/widget.module').then(m => m.WidgetModule)
       }, {
@@ -69,6 +70,9 @@ const routes: Routes = [
       }, {
         path: 'change-log',
         loadChildren: () => import('./pages/change-log/change-log.module').then(m => m.ChangeLogModule)
+      }, {
+        path: 'powerbi',
+        loadChildren: () => import('./pages/powerbi/powerbi.module').then(m => m.PowerBiModule)
       }, {
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)

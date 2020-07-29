@@ -10,23 +10,29 @@ import { TitleComponent } from './layout/admin/title/title.component';
 import { AuthComponent } from './layout/auth/auth.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import { MyComponentComponent } from './my-component/my-component.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    BreadcrumbsComponent,
-    TitleComponent,
-    AuthComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    SharedModule
-  ],
-  schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      AdminComponent,
+      BreadcrumbsComponent,
+      TitleComponent,
+      AuthComponent
+      // MyComponentComponent
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      SharedModule
+   ],
+   schemas: [
+      NO_ERRORS_SCHEMA
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }

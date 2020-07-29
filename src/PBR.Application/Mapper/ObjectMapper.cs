@@ -2,6 +2,7 @@
 using PBR.Core.Entities;
 using AutoMapper;
 using System;
+using PBR.Core.Entities.Base;
 
 namespace PBR.Application.Mapper
 {
@@ -28,8 +29,12 @@ namespace PBR.Application.Mapper
         {
             CreateMap<Product, ProductModel>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName)).ReverseMap();
-
+            CreateMap<Account, AccountModel>().ReverseMap();
             CreateMap<Category, CategoryModel>().ReverseMap();
+            CreateMap<ApplicationAccount, ApplicationAccountModel>().ReverseMap();
+            CreateMap<ApplicationDepartment, ApplicationDepartmentModel>().ReverseMap();
+            CreateMap<APPlication, ApplicationModel>().ReverseMap();
+            CreateMap<Department, DepartmentModel>().ReverseMap();
         }
     }
 }
