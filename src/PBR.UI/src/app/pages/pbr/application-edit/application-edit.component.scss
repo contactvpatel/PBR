@@ -1,0 +1,22 @@
+form{
+    padding:20px;
+}
+
+.radio{
+    padding: 5px;;
+}
+
+.button-margin{
+    margin:20x;
+}
+
+.button-div{
+    float: right;
+    padding: 20px !important;
+}
+
+@media(max-width: 360px) {
+    .button-div{
+        padding: 0px !important;
+    }
+}

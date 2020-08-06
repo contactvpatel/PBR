@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Account edit card start -->
+        <app-card [title]="'Create Power-Bi Account Manage'" [blockClass]="'table-border-style'">
+            <form [formGroup]="accountForm">
+                <div class="form-group">
+                    <label for="i_accountName">
+                        Account Name
+                    </label>
+                    <input type="text" formControlName="accountName" class="form-control form-control-warning" id="i_accountName">
+                </div>
+                <div class="form-group">
+                    <label for="i_userName">
+                        User Name
+                    </label>
+                    <input type="text" formControlName="userName" class="form-control form-control-warning" id="i_userName">
+                </div>
+                <div class="form-group">
+                    <label for="i_password">
+                        Password
+                    </label>
+                    <input type="password" formControlName="password" class="form-control form-control-warning" id='i_password'>
+                </div>
+                <div class="form-group">
+                    <label for="i_clientId">
+                        Client Id
+                    </label>
+                    <input type="text" formControlName="clientId" class="form-control form-control-warning" id='i_clientId'>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Is Active
+                    </label>
+                    <br>
+                    <!-- <div class="radio radiofill radio-inline">
+                        <label>
+                          <input type="radio" name="radio" checked="checked" formControlName="isActive">
+                          <i class="helper"></i>Yes
+                        </label>
+                      </div> -->
+                    <input type="radio" value="Yes" formControlName="isActive">
+                    <span class="radio">Yes</span>
+                    <input type="radio" value="No" formControlName="isActive">
+                    <span class="radio">No</span>
+                </div>
+                <div class="form-group">
+                    <div class="button-div">
+                        <button type="button" class="btn btn-warning mr-2">Save</button>
+                        <button type="button" class="btn btn-warning mr-2">Test</button>
+                        <button type="button" class="btn btn-secondary mr-2">Cancel</button>
+                    </div>
+                </div>
+            </form>
+
+        </app-card>
+    </div>
+</div>

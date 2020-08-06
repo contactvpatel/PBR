@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'ecommerce',
-        loadChildren: () =>  import('./dashboard-powerbi/dashboard-dashboard-powerbi.module').then(m => m.DashboardPowerBiModule)
+        loadChildren: () => import('./dashboard-ecommerce/dashboard-ecommerce.module').then(m => m.DashboardEcommerceModule)
       },
       {
         path: 'crm',

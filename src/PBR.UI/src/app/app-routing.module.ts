@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {AuthComponent} from './layout/auth/auth.component';
+import {SsologinComponent} from './ssologin/ssologin.component';
 
 const routes: Routes = [
   {
@@ -10,13 +11,22 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard/default',
+        redirectTo: 'ssologin',
         pathMatch: 'full'
-      }, {
-        path: 'dashboard',
-        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      }, 
+      // {
+      //   path: '',
+      //   redirectTo: 'dashboard/default',
+      //   pathMatch: 'full'
+      // }, 
+      {
+        path:'ssologin',
+        component: SsologinComponent,
       },
       {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      }, {
         path: 'widget',
         loadChildren: () => import('./pages/widget/widget.module').then(m => m.WidgetModule)
       }, {
@@ -71,12 +81,12 @@ const routes: Routes = [
         path: 'change-log',
         loadChildren: () => import('./pages/change-log/change-log.module').then(m => m.ChangeLogModule)
       }, {
-        path: 'powerbi',
-        loadChildren: () => import('./pages/powerbi/powerbi.module').then(m => m.PowerBiModule)
-      }, {
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
-      }
+      },  {
+        path: 'pbr',
+        loadChildren: () => import('./pages/pbr/pbr.module').then(m => m.PbrModule)
+      },
     ]
   },
   {
