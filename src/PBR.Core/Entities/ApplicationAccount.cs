@@ -16,7 +16,7 @@ namespace PBR.Core.Entities
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        //public APPlication    { get; set; }
+        
         public APPlication APPlication  { get; set; }
         public Account  Account { get; set; }
     }

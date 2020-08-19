@@ -6,6 +6,7 @@ using PBR.Core.Entities;
 using PBR.Core.Interfaces;
 using PBR.Core.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,24 +47,41 @@ namespace PBR.Application.Services
             // var cc = ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editProduct);
             await _powerBiApplicationDepartmentService.UpdateAsync(GetIdByAccountId);
         }
+        public async Task<ApplicationDepartmentModel> ApplicationDepartmentUpdate(ApplicationDepartmentModel accountModel)
+        {
+            var editProduct = await _powerBiApplicationDepartmentService.GetByIdAsync(accountModel.Id);
+        
 
+            var cc = ObjectMapper.Mapper.Map<ApplicationDepartmentModel, ApplicationDepartment>(accountModel, editProduct);
+
+          var UpdateApplicationDepartment= await _powerBiApplicationDepartmentService.UpdateAsync(cc);
+            var GetApplicationDepartment = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(UpdateApplicationDepartment);
+            return GetApplicationDepartment;
+        }
         public async Task<ApplicationDepartmentModel> GetApplicationDepartmentById(int id)
         {
-            var product = await _powerBiApplicationDepartmentService.GetByIdAsync(id);
-            var mapped = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(product);
+            var applicationDepartment = await _powerBiApplicationDepartmentService.GetByIdAsync(id);
+            var mapped = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(applicationDepartment);
             return mapped;
         }
-        public async Task<IEnumerable<ApplicationDepartmentModel>> GetApplicationDepartmentList()
+        public IList GetApplicationDepartmentList()
         {
-            var accounts = await _powerBiApplicationDepartmentService.GetApplicationAccountListAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationDepartmentModel>>(accounts);
-            return mapped;
+            
+            var applicationDepartment =  _powerBiApplicationDepartmentService.ApplicationDepartmentListAsync();
+            return applicationDepartment;
         }
 
         public async Task<IEnumerable<DepartmentModel>> GetDepartmentList()
         {
             var Department = await _powerBiDepartmentRepository.GetAllAsync();
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<DepartmentModel>>(Department);
+            return mapped;
+        }
+
+        public async Task<IEnumerable<ApplicationDepartmentModel>> CheckApplicatioIdAndDepartmentIdExists(int ApplicationId,int DepartmentId)
+        {
+            var applicationAccount = await _powerBiApplicationDepartmentService.CheckApplicatioIdAndDepartmentIdExists(ApplicationId, DepartmentId);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationDepartmentModel>>(applicationAccount);
             return mapped;
         }
     }

@@ -12,10 +12,10 @@ namespace PBR.Application.Interfaces
         Task<IEnumerable<ApplicationAccountModel>> GetApplicationAccountList();
         Task<ApplicationAccountModel> CreateApplicationAccount(ApplicationAccountModel accountModel); 
         Task<ApplicationAccountModel> GetApplicationAccountById(int id);
-        Task ApplicationAccountUpdate(ApplicationAccountModel accountModel);
+        Task<ApplicationAccountModel> ApplicationAccountUpdate(ApplicationAccountModel accountModel);
         Task DeleteApplicationAccount(int id);
         Task<IEnumerable<ApplicationModel>> GetApplicationList();
-        Task<IEnumerable<ApplicationAccountModel>> checkGroupIdExists(string AccountName);
+        Task<IEnumerable<ApplicationAccountModel>> CheckGroupIdExists(string AccountName);
 
 
     }

@@ -10,9 +10,14 @@ public class PowerBiApplicationDepartmentSpecification: BaseSpecification<Applic
         public PowerBiApplicationDepartmentSpecification()
             : base(null)
         {
-            //AddInclude(b => b.ApplicationAccount);
+            AddInclude(b => b.ApplicationAccount);
             AddInclude(b => b.Department);
+            
 
+        }
+         public PowerBiApplicationDepartmentSpecification(int ApplicationId,int DepartmentId)
+          : base(b => b.ApplicationAccountId == ApplicationId && b.DepartmentId == DepartmentId)
+        {
         }
     }
 }
