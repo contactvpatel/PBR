@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-lg-12">
+    <!-- Account edit card start -->
+    <app-card>
+      <form
+        autocomplete="disabled"
+        [formGroup]="accountForm"
+        (ngSubmit)="onFormSubmit()"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="i_accountName">
+            Account Name
+          </label>
+          <input
+            type="hidden"
+            formControlName="id"
+            class="form-control"
+            id="id"
+          />
+          <input
+            autocomplete="disabled"
+            type="text"
+            formControlName="accountName"
+            required
+            class="form-control"
+            id="i_accountName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="i_userName">
+            User Name
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            required
+            formControlName="userName"
+            class="form-control"
+            id="i_userName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="i_password">
+            Password
+          </label>
+          <input
+            autocomplete="new-password"
+            type="password"
+            required
+            formControlName="password"
+            class="form-control"
+            id="i_password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="i_clientId">
+            Client Id
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            required
+            formControlName="clientId"
+            class="form-control"
+            id="i_clientId"
+          />
+        </div>
+        <div class="form-group">
+          <label for="i_clientSecret">
+            Client Secret
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            required
+            formControlName="clientSecret"
+            class="form-control"
+            id="i_clientSecret"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label>
+            Is Active
+          </label>
+          <br/>
+          <!-- <div class="radio radiofill radio-inline">
+                        <label>
+                          <input type="radio" name="radio" checked="checked" formControlName="isActive">
+                          <i class="helper"></i>Yes
+                        </label>
+                      </div> -->
+          <!-- <input type="radio" [value]="true" formControlName="isActive" />
+          <span class="radio">Yes</span>
+          <input type="radio" [value]="false" formControlName="isActive" />
+          <span class="radio">No</span> -->
+
+          <label class="radio-inline"
+            ><input type="radio" [value]="true" formControlName="isActive" checked /> Yes</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" [value]="false" formControlName="isActive" /> No</label
+          >
+        
+        </div>
+        <div class="form-group">
+          <div class="button-div">
+            <button type="submit" class="btn btn-primary mr-2">Save</button>
+            <button type="button" class="btn btn-info mr-2">Test</button>
+            <button
+              type="button"
+              (click)="onCancelClick()"
+              class="btn btn-secondary mr-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>
+
+<ng2-toasty [position]="position"></ng2-toasty>

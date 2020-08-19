@@ -265,17 +265,7 @@ var MENUITEMS = [
                                 target: true
                             }
                         ]
-                    },
-                    {
-                        state: 'forgot',
-                        name: 'Forgot Password',
-                        target: true
-                    },
-                    {
-                        state: 'lock-screen',
-                        name: 'Lock Screen',
-                        target: true
-                    },
+                    }
                 ]
             }, {
                 state: 'maintenance',

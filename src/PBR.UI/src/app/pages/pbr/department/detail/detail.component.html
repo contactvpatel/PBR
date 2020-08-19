@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-lg-12">
+    <app-card>
+      <form
+        autocomplete="disabled"
+        [formGroup]="departmentForm"
+        (ngSubmit)="onFormSubmit()"
+        novalidate >
+        <div class="form-group">
+          <label for="i_applicationName">
+            Department Name
+          </label>
+          <input type="hidden" formControlName="id" id="id" />
+          <select class="form-control" required formControlName="departmentId">
+            <option
+              *ngFor="let c of config.department.list"
+              [value]="c.departmentId">
+              {{ c.departmentName }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="i_accountName">
+            Application Account Name
+          </label>
+          <select class="form-control" required formControlName="applicationAccountId">
+            <option *ngFor="let c of config.applicationAccount.list" [value]="c.id">{{
+              c.accountName
+            }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>
+            Is Active
+          </label>
+          <br />
+
+          <label class="radio-inline">
+            <input
+              type="radio"
+              [value]="true"
+              formControlName="isActive"
+              checked
+            />
+            Yes</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" [value]="false" formControlName="isActive" />
+            No</label
+          >
+        </div>
+        <div class="form-group">
+          <div class="button-div">
+            <button type="submit" class="btn btn-primary mr-2">Save</button>
+            
+            <button
+              type="button"
+              (click)="onCancelClick()"
+              class="btn btn-secondary mr-2">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>
