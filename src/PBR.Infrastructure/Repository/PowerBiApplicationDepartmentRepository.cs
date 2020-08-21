@@ -54,7 +54,7 @@ public class PowerBiApplicationDepartmentRepository: Repository<ApplicationDepar
                             select new
                             { // result selector 
                                 Id=ApplicationDepartment.Id,
-                                ApplicationAccountName = Application.ApplicationName + ' ' +  Accounts.AccountName,
+                                ApplicationAccountName = Application.ApplicationName + " - " +  Accounts.AccountName,
                                 DepartmentName = Department.Name,
                                 LastUpdatedDate = ApplicationDepartment.LastUpdatedDate,
                                 IsActive = ApplicationDepartment.IsActive

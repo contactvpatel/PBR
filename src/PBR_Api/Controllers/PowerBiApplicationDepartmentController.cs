@@ -94,10 +94,13 @@ namespace PBR_Api.Controllers
                 var problemDetails = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest,
+                    //Title="This DepartmentId And ApplicationAccountId Is Exists  Please Enter different Id."
                 };
+
                 var traceId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
                 problemDetails.Extensions["traceId"] = traceId;
                 var result = new BadRequestObjectResult(problemDetails);
+                
                 return result;
             }
             else
@@ -114,7 +117,7 @@ namespace PBR_Api.Controllers
         public async Task<ActionResult> Delete(int Id)
         {
             await _powerBiApplicationDepartmentService.ApplicationDepartmentDelete(Id);
-            return RedirectToAction("Index");
+            return Ok();
         }
         // DropdownList AccountName And Application And Id        
         [Route("GetApplicationNameAndAccountName")]

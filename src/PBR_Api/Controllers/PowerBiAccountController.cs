@@ -38,7 +38,7 @@ namespace PBR_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PowerBiAccountViewModel accountModel)
         {
-           accountModel.AccountName= accountModel.AccountName.Replace(" ","");
+           
             
             accountModel.AccessToken = "asasasSDdsd";
             accountModel.RefreshToken = "asasasSDdsd";
@@ -46,6 +46,10 @@ namespace PBR_Api.Controllers
             accountModel.LastUpdatedDate = System.DateTime.Now;
             accountModel.ExpiresIn = 565656565;
             accountModel.ExpiresOn = 565656565;
+            accountModel.AccountName =  accountModel.AccountName.Replace(" ", "");
+            accountModel.UserName =     accountModel.UserName.Replace(" ", "");
+            accountModel.ClientId =     accountModel.ClientId.Replace(" ", "");
+            accountModel.ClientSecret = accountModel.ClientSecret.Replace(" ", "");
 
             var existUserNameClientIdandClientScret = await _powerBiService.CheckUserNameClientIdClientSecret(accountModel.UserName, accountModel.ClientId, accountModel.ClientSecret);
             var existsAccountName = await _powerBiService.CheckAccountNameExists(accountModel.AccountName);
@@ -111,6 +115,10 @@ namespace PBR_Api.Controllers
             powerBiAccountViewModel.RefreshToken= PowerBiAccountList.RefreshToken;
             powerBiAccountViewModel.AccessToken = PowerBiAccountList.AccessToken;
             powerBiAccountViewModel.LastUpdatedDate = DateTime.Now;
+            powerBiAccountViewModel.AccountName = powerBiAccountViewModel.AccountName.Replace(" ", "");
+            powerBiAccountViewModel.UserName = powerBiAccountViewModel.UserName.Replace(" ", "");
+            powerBiAccountViewModel.ClientId = powerBiAccountViewModel.ClientId.Replace(" ", "");
+            powerBiAccountViewModel.ClientSecret = powerBiAccountViewModel.ClientSecret.Replace(" ", "");
             var existUserNameClientIdandClientScret = await _powerBiService.CheckUserNameClientIdClientSecret(powerBiAccountViewModel.UserName, powerBiAccountViewModel.ClientId, powerBiAccountViewModel.ClientSecret);
             var AccountListById = await _powerBiService.GetAccountById(powerBiAccountViewModel.Id);
             if (AccountListById.AccountName != powerBiAccountViewModel.AccountName || AccountListById.ClientId != powerBiAccountViewModel.ClientId || AccountListById.UserName != powerBiAccountViewModel.UserName || AccountListById.ClientSecret != powerBiAccountViewModel.ClientSecret)

@@ -42,8 +42,10 @@ namespace PBR_Api.Controllers
         {
             powerBiAppliactionAccountViewModel.CreatedDate = System.DateTime.Now;
             powerBiAppliactionAccountViewModel.LastUpdatedDate = System.DateTime.Now;
+            powerBiAppliactionAccountViewModel.GroupId = powerBiAppliactionAccountViewModel.GroupId.Replace(" ","");
 
             var GroupIdListByGroupId = await _powerBiApplicationAccountService.CheckGroupIdExists(powerBiAppliactionAccountViewModel.GroupId);
+          
             if (GroupIdListByGroupId.Count() >= 1)
             {                
                 ModelState.AddModelError("GroupId", "This GroupId already exists, Please Enter different GroupId.");
@@ -82,6 +84,7 @@ namespace PBR_Api.Controllers
             var PowerBiApplicationAccountList = await _powerBiApplicationAccountService.GetApplicationAccountById(powerBiAppliactionAccountViewModel.Id);
             powerBiAppliactionAccountViewModel.CreatedDate =PowerBiApplicationAccountList.CreatedDate;
             powerBiAppliactionAccountViewModel.LastUpdatedDate = System.DateTime.Now;
+            powerBiAppliactionAccountViewModel.GroupId = powerBiAppliactionAccountViewModel.GroupId.Replace(" ", "");
             var GroupIdListByGroupId = await _powerBiApplicationAccountService.CheckGroupIdExists(powerBiAppliactionAccountViewModel.GroupId);
             if (PowerBiApplicationAccountList.GroupId!=powerBiAppliactionAccountViewModel.GroupId && GroupIdListByGroupId.Count() >= 1) 
             {
