@@ -80,8 +80,8 @@ const routes: Routes = [
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
       },  {
-        path: 'pbr',
-        loadChildren: () => import('./pages/pbr/pbr.module').then(m => m.PbrModule)
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.adminModule)
       },
     ]
   },

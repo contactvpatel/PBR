@@ -22972,10 +22972,11 @@ body.dark {
 }
 
 
-.ng-invalid {
-  &.form-control {
-    border: 1px solid red;
-  }
+
+
+.has-error {
+  border: 1px solid red;
+  color: red;
 }
 
 @import "~ng2-toasty/style-bootstrap.css";

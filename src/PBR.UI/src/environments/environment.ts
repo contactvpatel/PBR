@@ -12,5 +12,5 @@ export const environment = {
   ssoLoginUrl: 'https://ims.dev.na.baps.org/sso-v2',
   apiUrl: 'localhost:5000/',
   serverUrl: 'http://pbr.themacrosoft.com',
-  Url: 'https://localhost:5001'
+  Url: 'http://localhost:5000'
 };

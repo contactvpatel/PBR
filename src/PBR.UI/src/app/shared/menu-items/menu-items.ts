@@ -101,7 +101,7 @@ const MENUITEMS = [
       //   ]
       // },
       {
-        state: 'pbr',
+        state: 'admin',
         short_label: 'P',
         name: 'Admin',
         type: 'sub',
