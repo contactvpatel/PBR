@@ -1,0 +1,117 @@
+
+           <app-card>
+           <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <!-- form start -->
+                <div class="box-body">
+                  <form [formGroup]="registrationform" (ngSubmit)="onsubmit()">
+                     <div class="form-group row">
+                      <label for="AccountName" style="font-style:initial;" class="col-sm-2 col-form-label">Account Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="AccountName" >
+                        <span *ngIf="!AccountName.valid && (AccountName.touched|| UserSubmittted)" class="messages text-danger">
+                          Please Enter Account Name
+                          </span>
+                      </div>
+
+                    </div>
+                    <div class="form-group row">
+                      <label for="UserName" style="font-style:initial;" class="col-sm-2 col-form-label">User Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="UserName" >
+                        <span *ngIf="!UserName.valid && (UserName.touched|| UserSubmittted)" class="messages text-danger">
+                          Please Enter User Name
+                          </span>
+                      </div>
+
+                    </div>
+                    <div class="form-group row">
+                      <label for="Password" class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-10">
+
+                        <input type="text" class="form-control" pattern formControlName="Password" >
+                        <span *ngIf="!Password.valid && (Password.touched|| UserSubmittted)" class="messages text-danger">
+                          Please Enter Password
+                          </span>
+                      </div>
+
+                      </div>
+                      <div class="form-group row">
+                        <label for="ClientId" class="col-sm-2 col-form-label">Client Id</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" formControlName="ClientId">
+                          <span *ngIf="!ClientId.valid && (ClientId.touched|| UserSubmittted)" class="messages text-danger">
+                            Please Enter Client Id
+                            </span>
+
+                        </div>
+
+                   </div>
+
+                   <div class="form-group row">
+                    <label for="IsActive" class="col-sm-2 col-form-label">Is Active</label>
+                    <div class="form-inline col-sm-10">
+                        <input id="Yes" type="radio" value="True" name="IsActive" formControlName="IsActive" >&nbsp;
+                        <label for="Yes">Yes</label>&nbsp;&nbsp;
+                        <input id="No" type="radio" value="False" name="IsActive" formControlName="IsActive">&nbsp;
+                        <label for="No">No</label>
+
+                    </div>
+                    <label class="col-sm-2"></label>
+                    <span *ngIf="!IsActive.valid && (IsActive.touched|| UserSubmittted)" class="messages text-danger col-sm-10">
+                      Please Select Is Active Option
+                      </span>
+                    <!-- <div *ngIf="IsActive && IsActive.invalid" class="errorMessage">
+                      <div *ngIf="IsActive.errors.required">Please Select Is Active Option</div>
+                  </div> -->
+
+                      <!-- @Html.ValidationMessageFor(model => model.ClientId)
+                      @Html.LabelFor(model => model.ClientId)
+                      @Html.TextBoxFor(model => model.ClientId, new Dictionary<string, object> { { "class", "form-control" } }) -->
+                  </div>
+                    <!-- <div class="form-group row">
+                      <label for="email" class="uk-form-label text-white">Address</label>
+                      <input type="text" class="form-control">
+                    </div> -->
+
+                    <div class="form-group row">
+                      <label class="col-sm-2"></label>
+                      <div class="col-sm-10">
+                         <button type="submit" class="btn btn-primary m-b-0">Save</button>
+                         <a type="button" class="btn btn-success text-white m-b-0 ml-2" >Test</a>
+                         <a type="reset" class="btn btn-secondary text-white m-b-0 ml-2" [routerLink]="'/powerbi/powerbiaccount'">Cancel</a>
+
+                      </div>
+                    </div>
+                    <!-- from Value:{{registrationform.value | json}}<br/>
+                    From Status:{{registrationform.valid}}
+                   -->
+               </form>
+                </div>
+
+
+
+                </div>
+            </div>
+        </div>
+     <!-- <form>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Simple Input</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="Text Input Validation" >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary m-b-0">Submit</button>
+          </div>
+        </div>
+      </form> -->
+
+
+
+
+    </app-card>

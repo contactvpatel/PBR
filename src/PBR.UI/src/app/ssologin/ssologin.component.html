@@ -1,0 +1,11 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" method="POST" action="https://ims.dev.na.baps.org/sso-v2">
+        
+        <div class="form-group input-group-lg">
+            <input type="hidden" class="form-control" formControlName="client_id">
+            <input type="hidden" class="form-control" formControlName="client_key">
+            <input type="hidden" class="form-control" formControlName="redirect_uri">
+        </div>
+
+    </form>
+</div>

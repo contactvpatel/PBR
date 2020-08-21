@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+      "target": "https://ims.dev.na.baps.org/sso-v2/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }

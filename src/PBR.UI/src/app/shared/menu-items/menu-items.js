@@ -28,6 +28,12 @@ var MENUITEMS = [
                         value: '100+'
                     }
                 ]
+            },
+            {
+                state: 'pbr',
+                name: 'PBR',
+                type: 'link',
+                icon: 'ti-view-grid'
             }
         ],
     },

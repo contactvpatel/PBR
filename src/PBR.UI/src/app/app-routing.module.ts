@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {AuthComponent} from './layout/auth/auth.component';
+import {SsologinComponent} from './ssologin/ssologin.component';
 
 const routes: Routes = [
   {
@@ -10,9 +11,19 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard/default',
+        redirectTo: 'ssologin',
         pathMatch: 'full'
-      }, {
+      }, 
+      // {
+      //   path: '',
+      //   redirectTo: 'dashboard/default',
+      //   pathMatch: 'full'
+      // }, 
+      {
+        path:'ssologin',
+        component: SsologinComponent,
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       }, {
@@ -72,7 +83,10 @@ const routes: Routes = [
       }, {
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
-      }
+      },  {
+        path: 'pbr',
+        loadChildren: () => import('./pages/pbr/pbr.module').then(m => m.PbrModule)
+      },
     ]
   },
   {

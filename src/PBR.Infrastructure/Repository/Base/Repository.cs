@@ -22,7 +22,14 @@ namespace PBR.Infrastructure.Repository.Base
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            try{
+                return await _dbContext.Set<T>().ToListAsync();
+            }
+            catch(Exception EX)
+            {
+                throw EX;
+            }
+            
         }
 
         public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
@@ -85,10 +92,11 @@ namespace PBR.Infrastructure.Repository.Base
             return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync();
+           _dbContext.Entry(entity).State = EntityState.Modified;
+           await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAsync(T entity)

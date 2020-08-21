@@ -99,6 +99,27 @@ const MENUITEMS = [
             name: 'Widget Chart Advcance'
           }
         ]
+      },
+      {
+        state: 'pbr',
+        short_label: 'P',
+        name: 'PBR',
+        type: 'sub',
+        icon: 'ti-view-grid',
+        children: [
+          {
+            state: 'manage-account',
+            name: 'Account'
+          },
+          {
+            state: 'manage-application',
+            name: 'Application'
+          },
+          {
+            state: 'manage-department',
+            name: 'Department'
+          }
+        ]
       }
     ],
   },
