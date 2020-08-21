@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AdminComponent} from './layout/admin/admin.component';
-import {AuthComponent} from './layout/auth/auth.component';
-import {SsologinComponent} from './ssologin/ssologin.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import { RedirectService } from './data/service/redirect.service';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [RedirectService],
     children: [
       {
         path: '',
-        redirectTo: 'ssologin',
-        pathMatch: 'full'
-      }, 
-      // {
-      //   path: '',
-      //   redirectTo: 'dashboard/default',
-      //   pathMatch: 'full'
-      // }, 
+        pathMatch: 'full',
+        redirectTo: 'dashboard'
+      },
       {
-        path:'ssologin',
-        component: SsologinComponent,
+        path: 'login',
+        redirectTo: '/auth/session-timeout'
       },
       {
         path: 'dashboard',
@@ -84,8 +80,8 @@ const routes: Routes = [
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
       },  {
-        path: 'pbr',
-        loadChildren: () => import('./pages/pbr/pbr.module').then(m => m.PbrModule)
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.adminModule)
       },
     ]
   },

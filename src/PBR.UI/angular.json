@@ -20,6 +20,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ng2-toasty/style.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome-scss/scss/font-awesome.scss",
               "node_modules/ti-icons/css/themify-icons.css",

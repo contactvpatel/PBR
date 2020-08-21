@@ -5,21 +5,14 @@ import {ToastData, ToastOptions, ToastyService} from 'ng2-toasty';
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: [
-    './notifications.component.scss',
-    '../../../../../../node_modules/ng2-toasty/style-bootstrap.css',
-    '../../../../../../node_modules/ng2-toasty/style-default.css',
-    '../../../../../../node_modules/ng2-toasty/style-material.css'
-  ],
-  encapsulation: ViewEncapsulation.None
+    './notifications.component.scss'
+  
+  ]
+ 
 })
 export class NotificationsComponent implements OnInit {
-  position = 'bottom-right';
-  title: string;
-  msg: string;
-  showClose = true;
-  theme = 'bootstrap';
-  type = 'default';
-  closeOther = false;
+  //position = 'bottom-right';
+  
   constructor(private toastyService: ToastyService) {}
 
   ngOnInit() {
@@ -29,7 +22,7 @@ export class NotificationsComponent implements OnInit {
     if (options.closeOther) {
       this.toastyService.clearAll();
     }
-    this.position = options.position ? options.position : this.position;
+   // this.position = options.position ? options.position : this.position;
     const toastOptions: ToastOptions = {
       title: options.title,
       msg: options.msg,
