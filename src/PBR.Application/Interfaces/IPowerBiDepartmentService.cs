@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PBR.Application.Interfaces
 {
-  public interface IPowerBiDepartmentService
+  public interface IDepartmentService
     {
         Task<IEnumerable<DepartmentModel>> GetDepartmentList();
 

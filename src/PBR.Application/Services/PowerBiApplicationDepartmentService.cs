@@ -6,6 +6,7 @@ using PBR.Core.Entities;
 using PBR.Core.Interfaces;
 using PBR.Core.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,15 +14,15 @@ using System.Threading.Tasks;
 namespace PBR.Application.Services
 {
     
-   public class PowerBiApplicationDepartmentService: IPowerBiApplicationDepartmentService
+   public class ApplicationDepartmentService: IApplicationDepartmentService
     {
-        private readonly IPowerBiApplicationDepartmentRepository _powerBiApplicationDepartmentService;
-        private readonly IAppLogger<PowerBiApplicationDepartmentService> _logger;
-        private readonly IPowerBiDepartmentRepository _powerBiDepartmentRepository;
-        public PowerBiApplicationDepartmentService(IPowerBiDepartmentRepository powerBiDepartmentRepository,IPowerBiApplicationDepartmentRepository  IpowerBiApplicationDepartmentRepository , IAppLogger<PowerBiApplicationDepartmentService> logger)
+        private readonly IApplicationDepartmentRepository _ApplicationDepartmentService;
+        private readonly IAppLogger<ApplicationDepartmentService> _logger;
+        private readonly IDepartmentRepository _DepartmentRepository;
+        public ApplicationDepartmentService(IDepartmentRepository DepartmentRepository,IApplicationDepartmentRepository  IApplicationDepartmentRepository , IAppLogger<ApplicationDepartmentService> logger)
         {
-            _powerBiDepartmentRepository=powerBiDepartmentRepository ?? throw new ArgumentNullException(nameof(powerBiDepartmentRepository));
-            _powerBiApplicationDepartmentService = IpowerBiApplicationDepartmentRepository ?? throw new ArgumentNullException(nameof(IpowerBiApplicationDepartmentRepository));
+            _DepartmentRepository=DepartmentRepository ?? throw new ArgumentNullException(nameof(DepartmentRepository));
+            _ApplicationDepartmentService = IApplicationDepartmentRepository ?? throw new ArgumentNullException(nameof(IApplicationDepartmentRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         }
@@ -32,7 +33,7 @@ namespace PBR.Application.Services
             if (mappedEntity == null)
                 throw new ApplicationException($"Entity could not be mapped.");
 
-            var newEntity = await _powerBiApplicationDepartmentService.AddAsync(mappedEntity);
+            var newEntity = await _ApplicationDepartmentService.AddAsync(mappedEntity);
             _logger.LogInformation($"Entity successfully added - PBRAppService");
 
             var newMappedEntity = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(applicationDepartmentModel);
@@ -41,29 +42,46 @@ namespace PBR.Application.Services
 
         public async Task DeleteApplicationDepartment(int id)
         {
-            var GetIdByAccountId = await _powerBiApplicationDepartmentService.GetByIdAsync(id);
+            var GetIdByAccountId = await _ApplicationDepartmentService.GetByIdAsync(id);
             GetIdByAccountId.IsActive = false;
             // var cc = ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editProduct);
-            await _powerBiApplicationDepartmentService.UpdateAsync(GetIdByAccountId);
+            await _ApplicationDepartmentService.UpdateAsync(GetIdByAccountId);
         }
+        public async Task<ApplicationDepartmentModel> ApplicationDepartmentUpdate(ApplicationDepartmentModel accountModel)
+        {
+            var editProduct = await _ApplicationDepartmentService.GetByIdAsync(accountModel.Id);
+        
 
+            var cc = ObjectMapper.Mapper.Map<ApplicationDepartmentModel, ApplicationDepartment>(accountModel, editProduct);
+
+          var UpdateApplicationDepartment= await _ApplicationDepartmentService.UpdateAsync(cc);
+            var GetApplicationDepartment = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(UpdateApplicationDepartment);
+            return GetApplicationDepartment;
+        }
         public async Task<ApplicationDepartmentModel> GetApplicationDepartmentById(int id)
         {
-            var product = await _powerBiApplicationDepartmentService.GetByIdAsync(id);
-            var mapped = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(product);
+            var applicationDepartment = await _ApplicationDepartmentService.GetByIdAsync(id);
+            var mapped = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(applicationDepartment);
             return mapped;
         }
-        public async Task<IEnumerable<ApplicationDepartmentModel>> GetApplicationDepartmentList()
+        public IList GetApplicationDepartmentList()
         {
-            var accounts = await _powerBiApplicationDepartmentService.GetApplicationAccountListAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationDepartmentModel>>(accounts);
-            return mapped;
+            
+            var applicationDepartment =  _ApplicationDepartmentService.ApplicationDepartmentListAsync();
+            return applicationDepartment;
         }
 
         public async Task<IEnumerable<DepartmentModel>> GetDepartmentList()
         {
-            var Department = await _powerBiDepartmentRepository.GetAllAsync();
+            var Department = await _DepartmentRepository.GetAllAsync();
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<DepartmentModel>>(Department);
+            return mapped;
+        }
+
+        public async Task<IEnumerable<ApplicationDepartmentModel>> CheckApplicatioIdAndDepartmentIdExists(int ApplicationId,int DepartmentId)
+        {
+            var applicationAccount = await _ApplicationDepartmentService.CheckApplicatioIdAndDepartmentIdExists(ApplicationId, DepartmentId);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationDepartmentModel>>(applicationAccount);
             return mapped;
         }
     }

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 namespace PBR.Core.Specifications
 {
-   public class PowerBiDepartmentSpecification: BaseSpecification<Department>
+   public class DepartmentSpecification: BaseSpecification<Department>
     {
-        public PowerBiDepartmentSpecification() : base(null)
+        public DepartmentSpecification() : base(null)
         {
         }
     }

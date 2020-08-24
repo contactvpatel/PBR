@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PBR.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +9,18 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace PBR.PBR_Api.ViewModels
 {
-    public class PowerBiAccountViewModel
+    public class AccountViewModel
     {
-        private readonly Application.Interfaces.IPowerBiApplicationAccountService _powerBiService;
+        private readonly Application.Interfaces.IApplicationAccountService _Service;
+        protected  readonly IAccountService owerBiService;
 
-        public PowerBiAccountViewModel()
+        public AccountViewModel(IAccountService Service, IApplicationAccountService ApplicationAccountService)
         {
-            AccountList = new List<PowerBiAccountViewModel>();
+            owerBiService = Service ?? throw new ArgumentNullException(nameof(Service));
+        }
+        public AccountViewModel()
+        {
+            AccountList = new List<AccountViewModel>();
         }
         public int Id { get; set; }
         [DisplayName("User Name")]
@@ -23,8 +29,7 @@ namespace PBR.PBR_Api.ViewModels
         public string UserName { get; set; }
         [DisplayName("Passoword")]
         [Required(ErrorMessage = "Passoword is required.")]
-
-        public string Passoword { get; set; }
+        public string Password { get; set; }
         [DisplayName("Client Id")]
         [Required(ErrorMessage = "ClientId is required.")]
 
@@ -38,11 +43,12 @@ namespace PBR.PBR_Api.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
         [DisplayName("Account Name")]
-        [Required(ErrorMessage = "AccountName is required.")]
+     //   [CustomAdmissionDate(owerBiService)]
+
         public string AccountName { get; set; }
         //public bool IsDelete { get; set; }
 
-        public IEnumerable<PowerBiAccountViewModel> AccountList { get; set; }
-       
+        public IEnumerable<AccountViewModel> AccountList { get; set; }
+
     }
 }

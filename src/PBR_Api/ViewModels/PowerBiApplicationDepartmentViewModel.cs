@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace PBR.PBR_Api.ViewModels
 {
-    public class PowerBiApplicationDepartmentViewModel
+    public class ApplicationDepartmentViewModel
     {
-        public PowerBiApplicationDepartmentViewModel()
+        public ApplicationDepartmentViewModel()
         {
-            ApplicationDepartmentList = new List<PowerBiApplicationDepartmentViewModel>();
+            ApplicationDepartmentList = new List<ApplicationDepartmentViewModel>();
         }
         [DisplayName("Application Name")]
         public int ApplicationAccountId { get; set; }
@@ -30,6 +30,6 @@ namespace PBR.PBR_Api.ViewModels
         //public PowerBiApplicationViewModel Application { get; set; }
         //public PowerBiAppliactionAccountViewModel AppliactionAccount { get; set; }
         public DepartmentViewModel Department { get; set; }
-        public IEnumerable<PowerBiApplicationDepartmentViewModel> ApplicationDepartmentList { get; set; }
+        public IEnumerable<ApplicationDepartmentViewModel> ApplicationDepartmentList { get; set; }
     }
 }

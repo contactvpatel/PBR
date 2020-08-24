@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace PBR.Infrastructure.Repository
 {
-    public class PowerBiDepartmentRepository : Repository<Department>, IPowerBiDepartmentRepository
+    public class DepartmentRepository : Repository<Department>, IDepartmentRepository
     {
-        public PowerBiDepartmentRepository(DataContext dbContext) : base(dbContext)
+        public DepartmentRepository(DataContext dbContext) : base(dbContext)
         {
         }
         public async Task<IEnumerable<Department>> GetProductListAsync()
         {       
-          var spec = new PowerBiDepartmentSpecification();
+          var spec = new DepartmentSpecification();
           return await GetAsync(spec);
            
         }

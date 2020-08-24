@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-lg-12">
+    <!-- Account edit card start -->
+    <app-card>
+      <form
+        autocomplete="disabled"
+        [formGroup]="accountForm"
+        (ngSubmit)="onFormSubmit()"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="i_accountName">
+            Account Name
+          </label>
+          <input
+            type="hidden"
+            formControlName="id"
+            class="form-control"
+            id="id"
+          />
+          <input
+            autocomplete="disabled"
+            type="text"
+            formControlName="accountName"
+            class="form-control"
+            [ngClass]="{'has-error' : submitted && accountForm.controls.accountName.errors?.required}"
+            id="i_accountName"
+          />
+          <!-- <span *ngIf="submitted && accountForm.controls.accountName.errors?.required" class="messages text-danger">
+            Please Enter Account Name
+            </span> -->
+        </div>
+        <div class="form-group">
+          <label for="i_userName">
+            User Name
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            [ngClass]="{'has-error' : submitted && accountForm.controls.userName.errors?.required}"
+            formControlName="userName"
+            class="form-control"
+            id="i_userName"
+          />
+          <!-- <span *ngIf="submitted && accountForm.controls.userName.errors?.required" class="messages text-danger">
+            Please Enter User Name
+            </span> -->
+        </div>
+        <div class="form-group">
+          <label for="i_password">
+            Password
+          </label>
+          <input
+            autocomplete="new-password"
+            type="password"
+            [ngClass]="{'has-error' : submitted && accountForm.controls.password.errors?.required}"
+            formControlName="password"
+            class="form-control"
+            id="i_password"
+          />
+          <!-- <span *ngIf="submitted && accountForm.controls.password.errors?.required" class="messages text-danger">
+            Please Enter Password
+            </span> -->
+        </div>
+        <div class="form-group">
+          <label for="i_clientId">
+            Client Id
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            [ngClass]="{'has-error' : submitted && accountForm.controls.clientId.errors?.required}"
+            formControlName="clientId"
+            class="form-control"
+            id="i_clientId"
+          />
+          <!-- <span *ngIf="submitted && accountForm.controls.clientId.errors?.required" class="messages text-danger">
+            Please Enter Client Id
+            </span> -->
+        </div>
+        <div class="form-group">
+          <label for="i_clientSecret">
+            Client Secret
+          </label>
+          <input
+            autocomplete="disabled"
+            type="text"
+            [ngClass]="{'has-error' : submitted && accountForm.controls.clientSecret.errors?.required}"
+            formControlName="clientSecret"
+            class="form-control"
+            id="i_clientSecret"
+          />
+          <!-- <span *ngIf="submitted && accountForm.controls.clientSecret.errors?.required" class="messages text-danger">
+            Please Enter Client Secret
+            </span> -->
+        </div>
+         <!-- <div class="form-group ">
+          <label for="IsActive">Is Active</label>
+          <div class="form-inline">
+                       
+            
+            <input type="radio" [value]="true"formControlName="isActive" checked />&nbsp;
+            <label>Yes</label>
+          <input type="radio" [value]="false" class="ml-2" formControlName="isActive" /> &nbsp;
+          <label>No</label>
+          </div>
+        </div> -->
+        <div class="form-group ">
+          <label for="IsActive">Is Active</label>
+          <div class="form-inline">
+                       
+            
+            <label class="radio-inline"><input type="radio" [value]="true"formControlName="isActive" checked />&nbsp;
+            Yes</label>
+            <label class="radio-inline"><input type="radio" [value]="false" class="ml-2" formControlName="isActive" /> &nbsp;
+          No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="button-div">
+            <button type="submit" class="btn btn-primary mr-2">Save</button>
+            <button type="button" class="btn btn-info mr-2">Test</button>
+            <button
+              type="button"
+              (click)="onCancelClick()"
+              class="btn btn-secondary mr-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>
+
+<ng2-toasty [position]="position"></ng2-toasty>

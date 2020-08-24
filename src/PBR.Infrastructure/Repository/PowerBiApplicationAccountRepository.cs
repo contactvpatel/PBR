@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace PBR.Infrastructure.Repository
 {
-    public class PowerBiApplicationAccountRepository : Repository<ApplicationAccount>,IPowerBiApplicationAccountRepository
+    public class ApplicationAccountRepository : Repository<ApplicationAccount>,IApplicationAccountRepository
     {
-        public PowerBiApplicationAccountRepository(DataContext dbContext) : base(dbContext)
+        public ApplicationAccountRepository(DataContext dbContext) : base(dbContext)
         {
         }
 
         public async Task<IEnumerable<ApplicationAccount>> CheakGroupIdExists(string GroupId)
         {
-            var spec = new PowerBiApplicationAccountSpecification(GroupId);
+            var spec = new ApplicationAccountSpecification(GroupId);
             var account = (await GetAsync(spec)).ToList();
             return account;
            
@@ -28,14 +28,14 @@ namespace PBR.Infrastructure.Repository
 
         public async Task<IEnumerable<ApplicationAccount>> GetApplicationAccountListAsync(int id)
         {
-            var spec = new PowerBiApplicationAccountSpecification(id);
+            var spec = new ApplicationAccountSpecification(id);
             var account = (await GetAsync(spec)).ToList();
             return account;
         }
 
         public async Task<IEnumerable<ApplicationAccount>> GetApplicationAccountListAsync()
         {
-            var spec = new PowerBiApplicationAccountSpecification();
+            var spec = new ApplicationAccountSpecification();
             var account = (await GetAsync(spec)).ToList();
             return account;
         }

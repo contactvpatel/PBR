@@ -14,12 +14,10 @@ namespace PBR.Core.Entities
         }
         
         public int Id { get; set; }
-        [Display(Name = "UserName")]
-        [Required(ErrorMessage = "Department is UserName.")]
+        
         public string UserName { get; set; }
-        [Display(Name = "Passoword")]
-        [Required(ErrorMessage = "Passoword is UserName.")]
-        public string Passoword { get; set; }
+        
+        public string Password { get; set; }
         
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }

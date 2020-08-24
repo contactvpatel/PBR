@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace PBR.Application.Interfaces
 {
-   public interface IPowerBiApplicationAccountService
+   public interface IApplicationAccountService
     {
         Task<IEnumerable<ApplicationAccountModel>> GetApplicationAccountList();
         Task<ApplicationAccountModel> CreateApplicationAccount(ApplicationAccountModel accountModel); 
         Task<ApplicationAccountModel> GetApplicationAccountById(int id);
-        Task ApplicationAccountUpdate(ApplicationAccountModel accountModel);
+        Task<ApplicationAccountModel> ApplicationAccountUpdate(ApplicationAccountModel accountModel);
         Task DeleteApplicationAccount(int id);
         Task<IEnumerable<ApplicationModel>> GetApplicationList();
-        Task<IEnumerable<ApplicationAccountModel>> checkGroupIdExists(string AccountName);
+        Task<IEnumerable<ApplicationAccountModel>> CheckGroupIdExists(string AccountName);
 
 
     }

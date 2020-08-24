@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AdminComponent} from './layout/admin/admin.component';
-import {AuthComponent} from './layout/auth/auth.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import { RedirectService } from './data/service/redirect.service';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [RedirectService],
     children: [
       {
         path: '',
-        redirectTo: 'dashboard/default',
-        pathMatch: 'full'
-      }, {
-        path: 'dashboard',
-        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+        pathMatch: 'full',
+        redirectTo: 'dashboard'
       },
       {
+        path: 'login',
+        redirectTo: '/auth/session-timeout'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      }, {
         path: 'widget',
         loadChildren: () => import('./pages/widget/widget.module').then(m => m.WidgetModule)
       }, {
@@ -71,12 +77,12 @@ const routes: Routes = [
         path: 'change-log',
         loadChildren: () => import('./pages/change-log/change-log.module').then(m => m.ChangeLogModule)
       }, {
-        path: 'powerbi',
-        loadChildren: () => import('./pages/powerbi/powerbi.module').then(m => m.PowerBiModule)
-      }, {
         path: 'simple-page',
         loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
-      }
+      },  {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.adminModule)
+      },
     ]
   },
   {

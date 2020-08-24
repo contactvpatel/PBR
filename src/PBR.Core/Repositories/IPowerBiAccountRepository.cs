@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PBR.Core.Repositories
 {
-   public  interface IPowerBiAccountRepository:IRepository<Account>
+   public  interface IAccountRepository:IRepository<Account>
     {
-        Task<IEnumerable<Account>> GetPowerBiAccountAysc();
+        Task<IEnumerable<Account>> GetAccountAysc();
         Task<IEnumerable<Account>> checkUserNameClientIdClientSecret(string UserName, string ClientId, string ClientSecret);
         Task<IEnumerable<Account>> CheakAccountNameExists(string AccountName);
 

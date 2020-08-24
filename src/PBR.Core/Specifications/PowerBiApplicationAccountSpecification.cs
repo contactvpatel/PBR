@@ -6,21 +6,21 @@ using System.Text;
 
 namespace PBR.Core.Specifications
 {
-    public class PowerBiApplicationAccountSpecification : BaseSpecification<ApplicationAccount>
+    public class ApplicationAccountSpecification : BaseSpecification<ApplicationAccount>
     {
 
-        public PowerBiApplicationAccountSpecification(int id)
+        public ApplicationAccountSpecification(int id)
             : base(b => b.AccountId == id && b.IsActive == true)
         {
             AddInclude(b => b.APPlication);
             AddInclude(b => b.Account);
         }
-        public PowerBiApplicationAccountSpecification(string GroupId)
+        public ApplicationAccountSpecification(string GroupId)
           : base(b => b.GroupId== GroupId)
         {
 
         }
-        public PowerBiApplicationAccountSpecification()
+        public ApplicationAccountSpecification()
             : base(null)
         {
             AddInclude(b => b.APPlication);

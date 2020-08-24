@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PBR.Core.Repositories
 {
-   public interface IPowerBiApplicationAccountRepository:  IRepository<ApplicationAccount>
+   public interface IApplicationAccountRepository:  IRepository<ApplicationAccount>
     {
         Task <IEnumerable<ApplicationAccount>> GetApplicationAccountListAsync(int id);
         Task<IEnumerable<ApplicationAccount>> GetApplicationAccountListAsync();

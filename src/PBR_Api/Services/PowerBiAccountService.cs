@@ -3,57 +3,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IPowerBiInterface = PBR.PBR_Api.Interfaces.IPowerBiAccountService;
+using IAccountInterface = PBR.PBR_Api.Interfaces.IAccountService;
 using PBR.Application.Models;
 using System.Text;
 using PBR.PBR_Api.ViewModels;
 
 namespace PBR.PBR_Api.Services
 {
-    public class PowerBiAccountService : IPowerBiInterface
+    public class AccountService : IAccountInterface
     {
-        private readonly Application.Interfaces.IPowerBiAccountService _powerBiService;
+        private readonly Application.Interfaces.IAccountService _Service;
         private readonly IMapper _mapper;
 
-        public PowerBiAccountService(Application.Interfaces.IPowerBiAccountService powerBiService , IMapper mapper)
+        public AccountService(Application.Interfaces.IAccountService Service , IMapper mapper)
         {
-         _powerBiService = powerBiService ?? throw new ArgumentNullException(nameof(powerBiService));
+         _Service = Service ?? throw new ArgumentNullException(nameof(Service));
          _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
       
-        public async Task<IEnumerable<PowerBiAccountViewModel>> CreatePowerBiAccount(PowerBiAccountViewModel powerBiAccountViewModel)
+        public async Task<IEnumerable<AccountViewModel>> CreateAccount(AccountViewModel AccountViewModel)
         {
            
-            var ViewModelToAccountModel = _mapper.Map<AccountModel>(powerBiAccountViewModel);
-            var list = await _powerBiService.CreateAccount(ViewModelToAccountModel);
+            var ViewModelToAccountModel = _mapper.Map<AccountModel>(AccountViewModel);
+            var list = await _Service.CreateAccount(ViewModelToAccountModel);
             return null;
         }
-        public async Task<PowerBiAccountViewModel> GetAccountById(int AccountId)
+        public async Task<AccountViewModel> GetAccountById(int AccountId)
         {
-            var list = await _powerBiService.GetAccountById(AccountId);
-            var mapped = _mapper.Map<PowerBiAccountViewModel>(list);
+            var list = await _Service.GetAccountById(AccountId);
+            var mapped = _mapper.Map<AccountViewModel>(list);
             return mapped;
         }
-        public async Task<IEnumerable<PowerBiAccountViewModel>> GetAllAccount()
+        public async Task<IEnumerable<AccountViewModel>> GetAllAccount()
         {
-            var list = await _powerBiService.GetAccountList();
-            var mapped = _mapper.Map<IEnumerable<PowerBiAccountViewModel>>(list);
+            var list = await _Service.GetAccountList();
+            var mapped = _mapper.Map<IEnumerable<AccountViewModel>>(list);
             return mapped;
         }
 
-        public async Task UpdateAccount(PowerBiAccountViewModel powerBiAccountViewModel)
+        public async Task<AccountViewModel> UpdateAccount(AccountViewModel AccountViewModel)
         {
-            var ViewModelToAccountModel = _mapper.Map<AccountModel>(powerBiAccountViewModel);
+            var ViewModelToAccountModel = _mapper.Map<AccountModel>(AccountViewModel);
+            var UpdateData= await _Service.AccountUpdate(ViewModelToAccountModel);
+            var GetUpdateData = _mapper.Map<AccountViewModel>(UpdateData);
 
-             await _powerBiService.AccountUpdate(ViewModelToAccountModel);
-
+            return GetUpdateData;
         }
         public async Task AcccountDelete(int id)
         {
 
-            //var ViewModelToAccountModel = _mapper.Map<AccountModel>(powerBiAccountViewModel);
-            await _powerBiService.DeleteAccount(id);
+            //var ViewModelToAccountModel = _mapper.Map<AccountModel>(AccountViewModel);
+            await _Service.DeleteAccount(id);
         }
         public async Task<string> GetApplicationByAccountWingHTML(int id)
         {
@@ -62,7 +63,7 @@ namespace PBR.PBR_Api.Services
             if (id!=null)
             {
                 
-                var  reports = await _powerBiService.GetApplicationByAccount(id); 
+                var  reports = await _Service.GetApplicationByAccount(id); 
                 foreach (var responsePositionMasterModel in reports)
                 {
                  html.AppendFormat(@"<option value=""{0}"">{1}</option>", responsePositionMasterModel.Id, responsePositionMasterModel.Application.ApplicationName);
@@ -72,23 +73,25 @@ namespace PBR.PBR_Api.Services
 
         }
 
-        public async Task<IEnumerable<PowerBiAccountViewModel>> checkUserNameClientIdClientSecret(string UserName, string ClientId, string ClientSecret)
+        public async Task<IEnumerable<AccountViewModel>> CheckUserNameClientIdClientSecret(string UserName, string ClientId, string ClientSecret)
         {
-            var list = await _powerBiService.checkUserNameClientIdClientSecret(UserName,ClientId,ClientSecret);
-            var mapped = _mapper.Map<IEnumerable<PowerBiAccountViewModel>>(list);
+            var list = await _Service.checkUserNameClientIdClientSecret(UserName,ClientId,ClientSecret);
+            var mapped = _mapper.Map<IEnumerable<AccountViewModel>>(list);
             return mapped;
         }
 
-        public async Task<IEnumerable<PowerBiAccountViewModel>> checkAccountNameExists(string AccountName)
+        public async Task<IEnumerable<AccountViewModel>> CheckAccountNameExists(string AccountName)
         {
-            var list = await _powerBiService.checkAccountNameExists(AccountName);
-            var mapped = _mapper.Map<IEnumerable<PowerBiAccountViewModel>>(list);
+            var list = await _Service.checkAccountNameExists(AccountName);
+            var mapped = _mapper.Map<IEnumerable<AccountViewModel>>(list);
             return mapped;
         }
-        //public async Task<PowerBiApplicationDepartmentViewModel> CreateApplicationDepartmentAccount(PowerBiApplicationDepartmentViewModel  powerBiApplicationDepartmentViewModel )
+
+       
+        //public async Task<ApplicationDepartmentViewModel> CreateApplicationDepartmentAccount(ApplicationDepartmentViewModel  ApplicationDepartmentViewModel )
         //{
-        //    var ViewModelToAccountModel = _mapper.Map<ApplicationDepartmentModel>(powerBiApplicationDepartmentViewModel);
-        //    var list = await _powerBiService.CreateApplicationDepartmentAccount(ViewModelToAccountModel);
+        //    var ViewModelToAccountModel = _mapper.Map<ApplicationDepartmentModel>(ApplicationDepartmentViewModel);
+        //    var list = await _Service.CreateApplicationDepartmentAccount(ViewModelToAccountModel);
         //    return null;
         //}
     }

@@ -11,29 +11,28 @@ using PBR.Core.Entities.Base;
 
 namespace PBR.Application.Services
 {
-    public class PowerBiAccountService : IPowerBiAccountService
+    public class AccountService : IAccountService
     {
-        private readonly IPowerBiAccountRepository _IpowerBiAccountRepository;
-        private readonly IAppLogger<PowerBiAccountService> _logger;
-        private readonly IPowerBiApplicationAccountRepository _IpowerBiApplicationAccountRepository;
-        public PowerBiAccountService(IPowerBiApplicationAccountRepository IpowerBiApplicationAccountRepository,
-        IPowerBiAccountRepository ipowerBiAccountRepository,
-        IAppLogger<PowerBiAccountService> logger)
+        private readonly IAccountRepository _IAccountRepository;
+        private readonly IAppLogger<AccountService> _logger;
+        private readonly IApplicationAccountRepository _IApplicationAccountRepository;
+        public AccountService(IApplicationAccountRepository IApplicationAccountRepository,
+        IAccountRepository iAccountRepository,
+        IAppLogger<AccountService> logger)
         {
-            _IpowerBiApplicationAccountRepository = IpowerBiApplicationAccountRepository?? throw new ArgumentNullException(nameof(IpowerBiApplicationAccountRepository));
-            _IpowerBiAccountRepository = ipowerBiAccountRepository ?? throw new ArgumentNullException(nameof(ipowerBiAccountRepository));
+            _IApplicationAccountRepository = IApplicationAccountRepository?? throw new ArgumentNullException(nameof(IApplicationAccountRepository));
+            _IAccountRepository = iAccountRepository ?? throw new ArgumentNullException(nameof(iAccountRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<AccountModel> CreateAccount(AccountModel accountModel)
         {
-            //await ValidateProductIfExist(productModel);
 
             var mappedEntity = ObjectMapper.Mapper.Map<Account>(accountModel);
             if (mappedEntity == null)
                 throw new ApplicationException($"Entity could not be mapped.");
 
-            var newEntity = await _IpowerBiAccountRepository.AddAsync(mappedEntity);
+            var newEntity = await _IAccountRepository.AddAsync(mappedEntity);
             _logger.LogInformation($"Entity successfully added - PBRAppService");
 
             var newMappedEntity = ObjectMapper.Mapper.Map<AccountModel>(accountModel);
@@ -42,81 +41,65 @@ namespace PBR.Application.Services
         }
         public async Task<IEnumerable<AccountModel>> checkUserNameClientIdClientSecret(string UserName, string ClientId, string ClientSecret)
         {
-            var product = await _IpowerBiAccountRepository.checkUserNameClientIdClientSecret(UserName,ClientId,ClientSecret);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(product);
+            var account = await _IAccountRepository.checkUserNameClientIdClientSecret(UserName,ClientId,ClientSecret);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(account);
             return mapped;
         }
         public async Task<IEnumerable<AccountModel>> checkAccountNameExists(string AccountName)
         {
-            var product = await _IpowerBiAccountRepository.CheakAccountNameExists(AccountName);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(product);
+            var account = await _IAccountRepository.CheakAccountNameExists(AccountName);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(account);
             return mapped;
         }
         public async Task<AccountModel> GetAccountById(int AccountId)
         {
-            var product = await _IpowerBiAccountRepository.GetByIdAsync(AccountId);
-            var mapped = ObjectMapper.Mapper.Map<AccountModel>(product);
+            var account = await _IAccountRepository.GetByIdAsync(AccountId);
+            var mapped = ObjectMapper.Mapper.Map<AccountModel>(account);
             return mapped;
         }
         public async Task<IEnumerable<AccountModel>> GetAccountList()
         {
-            var accounts = await _IpowerBiAccountRepository.GetAllAsync();
+            var accounts = await _IAccountRepository.GetAllAsync();
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(accounts);
             return mapped;
         }
         public  IEnumerable<AccountModel> GetAccount()
         {
-            var accounts =  _IpowerBiAccountRepository.GetPowerBiAccountAysc();
+            var accounts =  _IAccountRepository.GetAccountAysc();
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<AccountModel>>(accounts);
             return mapped;
         }
-        public async Task AccountUpdate(AccountModel accountModel)
+        public async Task<AccountModel> AccountUpdate(AccountModel accountModel)
         {
-            var editProduct = await _IpowerBiAccountRepository.GetByIdAsync(accountModel.Id);
-            //if (editProduct == null)
+            var editAccount = await _IAccountRepository.GetByIdAsync(accountModel.Id);
 
-           var cc= ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editProduct);
+           var cc= ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editAccount);
+           var UpdatedData=  await _IAccountRepository.UpdateAsync(cc);
+            var GetUpdatedData = ObjectMapper.Mapper.Map<AccountModel>(UpdatedData);
 
-            await _IpowerBiAccountRepository.UpdateAsync(cc);
+            return GetUpdatedData;
+
+
         }
 
         public async Task DeleteAccount(int id)
         {
-            var GetIdByAccountId = await _IpowerBiAccountRepository.GetByIdAsync(id);
+            var GetIdByAccountId = await _IAccountRepository.GetByIdAsync(id);
             GetIdByAccountId.IsActive = false;
-           // var cc = ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editProduct);
-            await _IpowerBiAccountRepository.UpdateAsync(GetIdByAccountId);
+            await _IAccountRepository.UpdateAsync(GetIdByAccountId);
         }
         public async Task<IEnumerable<ApplicationAccountModel>> GetApplicationByAccount(int id)
         {
-            var accounts = await _IpowerBiApplicationAccountRepository.GetApplicationAccountListAsync(id);
+            var accounts = await _IApplicationAccountRepository.GetApplicationAccountListAsync(id);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(accounts);
             return mapped;
         }
 
         public async Task<IEnumerable<ApplicationAccountModel>> GetApplicationNameByAccount(int id)
         {
-            var accounts = await _IpowerBiApplicationAccountRepository.GetApplicationNameAccountListAsync(id);
+            var accounts = await _IApplicationAccountRepository.GetApplicationNameAccountListAsync(id);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(accounts);
             return mapped;
         }
-
-
-
-
-        //public async Task<ApplicationDepartmentModel> CreateApplicationDepartmentAccount(ApplicationDepartmentModel  applicationDepartmentModel)
-        //{
-        //    var mappedEntity = ObjectMapper.Mapper.Map<ApplicationDepartment>(applicationDepartmentModel);
-        //    if (mappedEntity == null)
-        //        throw new ApplicationException($"Entity could not be mapped.");
-
-        //    var newEntity = await _powerBiApplicationDepartmentRepository.AddAsync(mappedEntity);
-        //    _logger.LogInformation($"Entity successfully added - PBRAppService");
-
-        //    var newMappedEntity = ObjectMapper.Mapper.Map<ApplicationDepartmentModel>(applicationDepartmentModel);
-        //    return newMappedEntity;
-        //}
-
-
     }
 }

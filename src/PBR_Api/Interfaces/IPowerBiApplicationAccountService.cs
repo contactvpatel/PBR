@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace PBR.PBR_Api.Interfaces
 {
-   public interface IPowerBiApplicationAccountService
+   public interface IApplicationAccountService
     {
-        Task<IEnumerable<PowerBiAppliactionAccountViewModel>> CreateAccount(PowerBiAppliactionAccountViewModel powerBiAccountApplicationViewModel);
-        Task<IEnumerable<PowerBiAppliactionAccountViewModel>> GetAllApplicationAccount();
-        Task<PowerBiAppliactionAccountViewModel> GetAccountById(int id);
-        Task UpdateAccount(PowerBiAppliactionAccountViewModel powerBiAccountViewModel);
+        Task<IEnumerable<AppliactionAccountViewModel>> CreateAccount(AppliactionAccountViewModel AccountApplicationViewModel);
+        Task<IEnumerable<AppliactionAccountViewModel>> GetAllApplicationAccount();
+        Task<AppliactionAccountViewModel> GetApplicationAccountById(int id);
+        Task<AppliactionAccountViewModel> UpdateApplicationAccount(AppliactionAccountViewModel AccountViewModel);
         Task ApplicationAcccountDelete(int id);
-        Task<IEnumerable<PowerBiApplicationViewModel>> GetAllApplication();
-        Task<IEnumerable<PowerBiAppliactionAccountViewModel>> checkGroupIdExists(string GroupId);
+        Task<IEnumerable<ApplicationViewModel>> GetAllApplication();
+        Task<IEnumerable<AppliactionAccountViewModel>> CheckGroupIdExists(string GroupId);
 
 
     }

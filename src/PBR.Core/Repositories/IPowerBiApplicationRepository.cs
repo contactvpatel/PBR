@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PBR.Core.Repositories.Base
 {
-   public interface IPowerBiApplicationRepository: IRepository<APPlication>
+   public interface IApplicationRepository: IRepository<APPlication>
     {
 
         Task<IEnumerable<APPlication>> GetProductListAsync();

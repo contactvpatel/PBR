@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace PBR.Infrastructure.Repository
 {
-   public class PowerBiApplicationRepository: Repository<APPlication>, IPowerBiApplicationRepository
+   public class ApplicationRepository: Repository<APPlication>, IApplicationRepository
     {
-        public PowerBiApplicationRepository(DataContext dbContext) : base(dbContext)
+        public ApplicationRepository(DataContext dbContext) : base(dbContext)
         {
         }
 
         public async Task<IEnumerable<APPlication>> GetProductListAsync()
         {
-            var spec = new PowerBiApplicationSpesification();
+            var spec = new ApplicationSpesification();
             return await GetAsync(spec);
         }
     }

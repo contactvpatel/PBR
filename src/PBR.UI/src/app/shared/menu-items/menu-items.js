@@ -28,6 +28,12 @@ var MENUITEMS = [
                         value: '100+'
                     }
                 ]
+            },
+            {
+                state: 'pbr',
+                name: 'PBR',
+                type: 'link',
+                icon: 'ti-view-grid'
             }
         ],
     },
@@ -199,7 +205,7 @@ var MENUITEMS = [
                 ]
             }
         ]
-    },
+    }
     {
         label: 'Pages',
         main: [
@@ -259,17 +265,7 @@ var MENUITEMS = [
                                 target: true
                             }
                         ]
-                    },
-                    {
-                        state: 'forgot',
-                        name: 'Forgot Password',
-                        target: true
-                    },
-                    {
-                        state: 'lock-screen',
-                        name: 'Lock Screen',
-                        target: true
-                    },
+                    }
                 ]
             }, {
                 state: 'maintenance',
@@ -385,27 +381,7 @@ var MENUITEMS = [
                         value: '1.0'
                     }
                 ]
-            },
-            {
-              state: 'powerbi',
-              name: 'powerbi',
-              type: 'link',
-              icon: 'ti-list'
-
-          },{
-            state: 'powerbi',
-            short_label: 'C',
-            name: 'powerbi',
-            type: 'sub',
-            icon: 'ti-list',
-            children: [
-              {
-                state: 'powerbiaccount',
-                name: 'Default'
-              }
-    ]
-
-          }
+            }
         ]
     },
     {

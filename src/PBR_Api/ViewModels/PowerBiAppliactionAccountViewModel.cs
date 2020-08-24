@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace PBR.PBR_Api.ViewModels
 {
-    public class PowerBiAppliactionAccountViewModel
+    public class AppliactionAccountViewModel
     {
-        public PowerBiAppliactionAccountViewModel()
+        public AppliactionAccountViewModel()
         {
 
-            ApplicationAccountList = new List<PowerBiAppliactionAccountViewModel>();
+            ApplicationAccountList = new List<AppliactionAccountViewModel>();
         }
         [DisplayName("Application Name")]
 
@@ -32,9 +32,9 @@ namespace PBR.PBR_Api.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
         public int Id { get; set; }
-        public PowerBiApplicationViewModel Application { get; set; }
-        public PowerBiAccountViewModel Account { get; set; }
+        public ApplicationViewModel Application { get; set; }
+        public AccountViewModel Account { get; set; }
 
-        public IEnumerable<PowerBiAppliactionAccountViewModel> ApplicationAccountList { get; set; }
+        public IEnumerable<AppliactionAccountViewModel> ApplicationAccountList { get; set; }
     }
 }

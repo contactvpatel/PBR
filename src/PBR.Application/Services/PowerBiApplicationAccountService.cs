@@ -13,28 +13,30 @@ using System.Threading.Tasks;
 
 namespace PBR.Application.Services
 {
-    public class PowerBiApplicationAccountService : IPowerBiApplicationAccountService
+    public class ApplicationAccountService : IApplicationAccountService
     {
-        private readonly IPowerBiApplicationAccountRepository _powerBiApplicationAccountService;
-        private readonly IPowerBiApplicationRepository _powerBiApplicationRepository;
-        private readonly IAppLogger<PowerBiApplicationAccountService> _logger;
-        public PowerBiApplicationAccountService(IPowerBiApplicationAccountRepository iPowerBiApplicationAccountRepository, IPowerBiApplicationRepository powerBiApplicationRepository, IAppLogger<PowerBiApplicationAccountService> logger )
+        private readonly IApplicationAccountRepository _ApplicationAccountService;
+        private readonly IApplicationRepository _ApplicationRepository;
+        private readonly IAppLogger<ApplicationAccountService> _logger;
+        public ApplicationAccountService(IApplicationAccountRepository iApplicationAccountRepository, IApplicationRepository ApplicationRepository, IAppLogger<ApplicationAccountService> logger )
         {
-            _powerBiApplicationRepository = powerBiApplicationRepository??throw new ArgumentNullException(nameof(powerBiApplicationRepository));
-            _powerBiApplicationAccountService = iPowerBiApplicationAccountRepository ?? throw new ArgumentNullException(nameof(iPowerBiApplicationAccountRepository));
+            _ApplicationRepository = ApplicationRepository??throw new ArgumentNullException(nameof(ApplicationRepository));
+            _ApplicationAccountService = iApplicationAccountRepository ?? throw new ArgumentNullException(nameof(iApplicationAccountRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task ApplicationAccountUpdate(ApplicationAccountModel applicationAccount)
+        public async Task<ApplicationAccountModel> ApplicationAccountUpdate(ApplicationAccountModel applicationAccount)
         {
-            var editProduct = await _powerBiApplicationAccountService.GetByIdAsync(applicationAccount.Id);
+            var editProduct = await _ApplicationAccountService.GetByIdAsync(applicationAccount.Id);
             var cc = ObjectMapper.Mapper.Map<ApplicationAccountModel, ApplicationAccount>(applicationAccount, editProduct);
-            await _powerBiApplicationAccountService.UpdateAsync(cc);
-            
+          var ApplicationAccountUpdate=  await _ApplicationAccountService.UpdateAsync(cc);
+            var GetApplicationAccount = ObjectMapper.Mapper.Map<ApplicationAccountModel>(ApplicationAccountUpdate);
+            return GetApplicationAccount;
+
         }
-          public async Task<IEnumerable<ApplicationAccountModel>> checkGroupIdExists(string AccountName)
+          public async Task<IEnumerable<ApplicationAccountModel>> CheckGroupIdExists(string AccountName)
         {
-            var product = await _powerBiApplicationAccountService.CheakGroupIdExists(AccountName);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(product);
+            var applicationAccount = await _ApplicationAccountService.CheakGroupIdExists(AccountName);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(applicationAccount);
             return mapped;
             
         }
@@ -45,7 +47,7 @@ namespace PBR.Application.Services
             if (mappedEntity == null)
             throw new ApplicationException($"Entity could not be mapped.");
             
-            var newEntity = await _powerBiApplicationAccountService.AddAsync(mappedEntity);
+            var newEntity = await _ApplicationAccountService.AddAsync(mappedEntity);
             _logger.LogInformation($"Entity successfully added - PBRAppService");
 
             var newMappedEntity = ObjectMapper.Mapper.Map<ApplicationAccountModel>(accountModel);
@@ -54,29 +56,29 @@ namespace PBR.Application.Services
 
         public async Task DeleteApplicationAccount(int id)
         {
-            var GetIdByAccountId = await _powerBiApplicationAccountService.GetByIdAsync(id);
+            var GetIdByAccountId = await _ApplicationAccountService.GetByIdAsync(id);
             GetIdByAccountId.IsActive = false;
             // var cc = ObjectMapper.Mapper.Map<AccountModel, Account>(accountModel, editProduct);
-            await _powerBiApplicationAccountService.UpdateAsync(GetIdByAccountId);
+            await _ApplicationAccountService.UpdateAsync(GetIdByAccountId);
         }
 
         public async Task<ApplicationAccountModel> GetApplicationAccountById(int ApplicationAccountid)
         {
-            var product = await _powerBiApplicationAccountService.GetByIdAsync(ApplicationAccountid);
-            var mapped = ObjectMapper.Mapper.Map<ApplicationAccountModel>(product);
+            var applicationAccount = await _ApplicationAccountService.GetByIdAsync(ApplicationAccountid);
+            var mapped = ObjectMapper.Mapper.Map<ApplicationAccountModel>(applicationAccount);
             return mapped;
         }
         public async Task<IEnumerable<ApplicationAccountModel>> GetApplicationAccountList()
         {
-            var accounts = await _powerBiApplicationAccountService.GetApplicationAccountListAsync();/*GetAllAsync();*/
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(accounts);
+            var applicationAccount = await _ApplicationAccountService.GetApplicationAccountListAsync();/*GetAllAsync();*/
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationAccountModel>>(applicationAccount);
             return mapped;
         }
 
         public async Task<IEnumerable<ApplicationModel>> GetApplicationList()
         {
-            var accounts = await _powerBiApplicationRepository.GetProductListAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationModel>>(accounts);
+            var applicationAccount = await _ApplicationRepository.GetProductListAsync();
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ApplicationModel>>(applicationAccount);
             return mapped;
         }
     }

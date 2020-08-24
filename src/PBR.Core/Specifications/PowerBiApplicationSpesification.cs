@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 namespace PBR.Core.Specifications
 {
-   public class PowerBiApplicationSpesification : BaseSpecification<APPlication>
+   public class ApplicationSpesification : BaseSpecification<APPlication>
     {
-        public PowerBiApplicationSpesification()
+        public ApplicationSpesification()
             : base(null)
         {
 

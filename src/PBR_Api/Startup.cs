@@ -46,33 +46,34 @@ namespace PBR_Api
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IPowerBiAccountRepository, PowerBiAccountRepository>();
-            services.AddScoped<IPowerBiApplicationDepartmentRepository, PowerBiApplicationDepartmentRepository>();
-            services.AddScoped<IPowerBiApplicationAccountRepository, PowerBiApplicationAccountRepository>();
-            services.AddScoped<IPowerBiApplicationRepository, PowerBiApplicationRepository>();
-            services.AddScoped<IPowerBiDepartmentRepository, PowerBiDepartmentRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IApplicationDepartmentRepository, ApplicationDepartmentRepository>();
+            services.AddScoped<IApplicationAccountRepository, ApplicationAccountRepository>();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Add Application Layer
             services.AddScoped<PBR.Application.Interfaces.IProductService, ProductService>();
             services.AddScoped<PBR.Application.Interfaces.ICategoryService, CategoryService>();
-            services.AddScoped<PBR.Application.Interfaces.IPowerBiAccountService, PowerBiAccountService>();
-            services.AddScoped<PBR.Application.Interfaces.IPowerBiApplicationAccountService, PowerBiApplicationAccountService>();
-            services.AddScoped<PBR.Application.Interfaces.IPowerBiApplicationDepartmentService,PowerBiApplicationDepartmentService>();
+            services.AddScoped<PBR.Application.Interfaces.IAccountService, AccountService>();
+            services.AddScoped<PBR.Application.Interfaces.IApplicationAccountService, ApplicationAccountService>();
+            services.AddScoped<PBR.Application.Interfaces.IApplicationDepartmentService,ApplicationDepartmentService>();
 
             // Add Web Layer
             services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
             //services.AddScoped<IIndexPageService, IndexPageService>();
             //services.AddScoped<IProductService, ProductPageService>();
             //services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<PBR.PBR_Api.Interfaces.IPowerBiAccountService, PBR.PBR_Api.Services.PowerBiAccountService>();
-            services.AddScoped<PBR.PBR_Api.Interfaces.IPowerBiApplicationAccountService, PBR.PBR_Api.Services.PowerBiApplicationAccountService>();
-            services.AddScoped<PBR.PBR_Api.Interfaces.IPowerBiApplicationDepartmentService, PBR.PBR_Api.Services.PowerBiApplicationDepartmentService>();
+            services.AddScoped<PBR.PBR_Api.Interfaces.IAccountService, PBR.PBR_Api.Services.AccountService>();
+            services.AddScoped<PBR.PBR_Api.Interfaces.IApplicationAccountService, PBR.PBR_Api.Services.ApplicationAccountService>();
+            services.AddScoped<PBR.PBR_Api.Interfaces.IApplicationDepartmentService, PBR.PBR_Api.Services.ApplicationDepartmentService>();
 //            Add Miscellaneous
             services.AddHttpContextAccessor();
             services.AddControllers().AddNewtonsoftJson();
             services.AddControllers();
             services.AddCors();
+
             //services.AddDbContext<PBRContext>(Option => 
             //Option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddScoped<IPBR_Repo,PBR_Repo>();
@@ -102,7 +103,7 @@ namespace PBR_Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
             app.UseRouting();

@@ -1,0 +1,62 @@
+<div class="pcoded"
+     [attr.nav-type]="navType"
+     [attr.theme-layout]="themeLayout"
+     [attr.layout-type]="layoutType"
+     [attr.vertical-placement]="verticalPlacement"
+     [attr.vertical-layout]="verticalLayout"
+     [attr.pcoded-device-type]="deviceType"
+     [attr.vertical-nav-type]="verticalNavType"
+     [attr.vertical-effect]="verticalEffect"
+     [attr.vnavigation-view]="vNavigationView"
+     (window:resize)="onResize($event)">
+  <div class="pcoded-overlay-box"></div>
+  <div class="pcoded-container navbar-wrapper">
+    <nav class="navbar header-navbar pcoded-header" [attr.pcoded-header-position]="pcodedHeaderPosition" [attr.header-theme]="headerTheme">
+      <div class="navbar-wrapper">
+        <div class="navbar-logo" [attr.logo-theme]="logoTheme">
+          <a [routerLink]="['/']">
+            <img class="img-fluid img-logo" src="assets/images/logo.png" alt="Theme-Logo"/>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="pcoded-main-container">
+      <div class="pcoded-wrapper">
+        <div class="page-wrapper">
+          <div class="page-body">
+            <section class="login header p-fixed d-flex text-center">
+              <div class="auth-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="login-card card-body auth-body">
+                      <div class="auth-box">
+                        <div class="row m-b-20">
+                          <div class="col-md-12 container">
+                            <h2 class="">Uh oh...</h2>
+                            <h3>Your session timeout. Please sign in again.</h3>
+                          </div>
+                        </div>
+                        <div class="row m-t-30">
+                          <div class="col-md-12">
+                            <form ngNoForm method="post" [action]="ssoLoginUrl">
+                              <input type="hidden" [value]="ssoClientId" name="client_id">
+                              <input type="hidden" [value]="ssoClientSecret" name="client_key">
+                              <button type="submit" name="submit" class="btn btn-primary theme-bg-color btn-md btn-block waves-effect text-center m-b-20">SIGN IN</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="footer bg-inverse">
+              <p class="text-center">Copyright &copy; 2020 Power BI Reports , All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

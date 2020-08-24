@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace PBR.Infrastructure.Repository
 {
-   public class PowerBiAccountRepository: Repository<Account>, IPowerBiAccountRepository
+   public class AccountRepository: Repository<Account>, IAccountRepository
     {
-        public PowerBiAccountRepository(DataContext dbContext) : base(dbContext)
+        public AccountRepository(DataContext dbContext) : base(dbContext)
         {
         }
 
         public async Task<IEnumerable<Account>> CheakAccountNameExists(string AccountName)
         {
-            var spec = new PowerBiAccountSpesification(AccountName);
+            var spec = new AccountSpesification(AccountName);
             var account = (await GetAsync(spec));
             return account;
         }
 
         public async Task<IEnumerable<Account>> checkUserNameClientIdClientSecret(string UserName, string ClientId, string ClientSecret)
         {
-            var spec = new PowerBiAccountSpesification(UserName,ClientId,ClientSecret);
+            var spec = new AccountSpesification(UserName,ClientId,ClientSecret);
             var account = (await GetAsync(spec));
             return account;
         }
 
-        public async  Task<IEnumerable<Account>> GetPowerBiAccountAysc()
+        public async  Task<IEnumerable<Account>> GetAccountAysc()
         {
-            var spec = new PowerBiAccountSpesification();
+            var spec = new AccountSpesification();
             var account = (await GetAsync(spec)).ToList();
             return account;
         }

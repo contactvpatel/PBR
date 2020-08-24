@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace PBR.PBR_Api.ViewModels
 {
-    public class PowerBiApplicationViewModel
+    public class ApplicationViewModel
     {
-        public PowerBiApplicationViewModel() 
+        public ApplicationViewModel() 
         {
-            ApplicationList= new List<PowerBiApplicationViewModel>();
+            ApplicationList= new List<ApplicationViewModel>();
         }
         public int ApplicationId { get; set; }
         public string ApplicationName { get; set; }
         public DateTime ModifiedDate { get; set; }
         public int ModifiedBy { get; set; }
-        public IEnumerable<PowerBiApplicationViewModel> ApplicationList { get; set; }
+        public IEnumerable<ApplicationViewModel> ApplicationList { get; set; }
 
     }
 }

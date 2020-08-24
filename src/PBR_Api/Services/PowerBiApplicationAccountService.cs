@@ -4,20 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IPowerBiInterface = PBR.PBR_Api.Interfaces.IPowerBiApplicationAccountService;
+using IInterface = PBR.PBR_Api.Interfaces.IApplicationAccountService;
 using PBR.Application.Models;
 using PBR.PBR_Api.ViewModels;
 
 namespace PBR.PBR_Api.Services
 {
-    public class PowerBiApplicationAccountService: IPowerBiInterface
+    public class ApplicationAccountService: IInterface
     {
-        private readonly Application.Interfaces.IPowerBiApplicationAccountService _powerBiService;
+        private readonly Application.Interfaces.IApplicationAccountService _Service;
         private readonly IMapper _mapper;
 
-        public PowerBiApplicationAccountService(Application.Interfaces.IPowerBiApplicationAccountService powerBiService, IMapper mapper)
+        public ApplicationAccountService(Application.Interfaces.IApplicationAccountService Service, IMapper mapper)
         {
-            _powerBiService = powerBiService ?? throw new ArgumentNullException(nameof(powerBiService));
+            _Service = Service ?? throw new ArgumentNullException(nameof(Service));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -25,54 +25,58 @@ namespace PBR.PBR_Api.Services
 
         public async Task ApplicationAcccountDelete(int id)
         {
-            await _powerBiService.DeleteApplicationAccount(id);
+            await _Service.DeleteApplicationAccount(id);
 
         }
 
-        public async Task<IEnumerable<PowerBiAppliactionAccountViewModel>> checkGroupIdExists(string GroupId)
+        public async Task<IEnumerable<AppliactionAccountViewModel>> CheckGroupIdExists(string GroupId)
         {
-            var list = await _powerBiService.checkGroupIdExists(GroupId);
-            var mapped = _mapper.Map<IEnumerable<PowerBiAppliactionAccountViewModel>>(list);
+            var list = await _Service.CheckGroupIdExists(GroupId);
+            var mapped = _mapper.Map<IEnumerable<AppliactionAccountViewModel>>(list);
             return mapped;
             
         }
 
-        public async Task<IEnumerable<PowerBiAppliactionAccountViewModel>> CreateAccount(PowerBiAppliactionAccountViewModel powerBiAccountApplicationViewModel)
+       
+
+        public async Task<IEnumerable<AppliactionAccountViewModel>> CreateAccount(AppliactionAccountViewModel AccountApplicationViewModel)
         {
-            var ViewModelToAccountModel = _mapper.Map<ApplicationAccountModel>(powerBiAccountApplicationViewModel);
-            var list = await _powerBiService.CreateApplicationAccount(ViewModelToAccountModel);
+            var ViewModelToAccountModel = _mapper.Map<ApplicationAccountModel>(AccountApplicationViewModel);
+            var list = await _Service.CreateApplicationAccount(ViewModelToAccountModel);
             return null;
             
         }
 
-        public async Task<PowerBiAppliactionAccountViewModel> GetAccountById(int id)
+        public async Task<AppliactionAccountViewModel> GetApplicationAccountById(int id)
         {
-            var list = await _powerBiService.GetApplicationAccountById(id);
-            var mapped = _mapper.Map<PowerBiAppliactionAccountViewModel>(list);
+            var list = await _Service.GetApplicationAccountById(id);
+            var mapped = _mapper.Map<AppliactionAccountViewModel>(list);
             return mapped;
         }
 
-        public async Task<IEnumerable<PowerBiApplicationViewModel>> GetAllApplication()
+        public async Task<IEnumerable<ApplicationViewModel>> GetAllApplication()
         {
-            var list = await _powerBiService.GetApplicationList();
-            var mapped = _mapper.Map<IEnumerable<PowerBiApplicationViewModel>>(list);
+            var list = await _Service.GetApplicationList();
+            var mapped = _mapper.Map<IEnumerable<ApplicationViewModel>>(list);
             return mapped;
         }
 
-        public async Task<IEnumerable<PowerBiAppliactionAccountViewModel>> GetAllApplicationAccount()
+        public async Task<IEnumerable<AppliactionAccountViewModel>> GetAllApplicationAccount()
         {
-            var list = await _powerBiService.GetApplicationAccountList();
-            var mapped = _mapper.Map<IEnumerable<PowerBiAppliactionAccountViewModel>>(list);
+            var list = await _Service.GetApplicationAccountList();
+            var mapped = _mapper.Map<IEnumerable<AppliactionAccountViewModel>>(list);
+          
             return mapped;
         }
 
-        public async Task UpdateAccount(PowerBiAppliactionAccountViewModel powerBiAccountViewModel)
+        public async Task<AppliactionAccountViewModel> UpdateApplicationAccount(AppliactionAccountViewModel AccountViewModel)
         {
-             var ViewModelToAccountModel = _mapper.Map<ApplicationAccountModel>(powerBiAccountViewModel);
+             var ViewModelToAccountModel = _mapper.Map<ApplicationAccountModel>(AccountViewModel);
 
-                await _powerBiService.ApplicationAccountUpdate(ViewModelToAccountModel);
+              var UpdateApplicationAccount=  await _Service.ApplicationAccountUpdate(ViewModelToAccountModel);
+            var GetUpdateApplicationAccount = _mapper.Map<AppliactionAccountViewModel>(UpdateApplicationAccount);
 
-            
+            return GetUpdateApplicationAccount;
         }
     }
 }

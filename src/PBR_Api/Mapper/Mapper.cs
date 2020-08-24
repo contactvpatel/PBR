@@ -11,17 +11,17 @@ namespace PBR.UI.Mapper
         public Mapper()
         {
             
-            CreateMap<AccountModel, PowerBiAccountViewModel>();
-            CreateMap<PowerBiAccountViewModel, AccountModel>();
-            CreateMap<ApplicationAccountModel, PowerBiAppliactionAccountViewModel>();
-            CreateMap<PowerBiAppliactionAccountViewModel, ApplicationAccountModel>();
-            CreateMap<PowerBiApplicationDepartmentViewModel, ApplicationDepartmentModel>();
-            CreateMap<ApplicationDepartmentModel,PowerBiApplicationDepartmentViewModel>();
-            CreateMap<ApplicationAccountModel, PowerBiApplicationViewModel>();
+            CreateMap<AccountModel, AccountViewModel>();
+            CreateMap<AccountViewModel, AccountModel>();
+            CreateMap<ApplicationAccountModel, AppliactionAccountViewModel>();
+            CreateMap<AppliactionAccountViewModel, ApplicationAccountModel>();
+            CreateMap<ApplicationDepartmentViewModel, ApplicationDepartmentModel>();
+            CreateMap<ApplicationDepartmentModel,ApplicationDepartmentViewModel>();
+            CreateMap<ApplicationAccountModel, ApplicationViewModel>();
 
             CreateMap<ApplicationDepartmentModel, DepartmentViewModel>();
-            CreateMap<PowerBiApplicationViewModel,ApplicationModel>();
-            CreateMap<ApplicationModel, PowerBiApplicationViewModel>();
+            CreateMap<ApplicationViewModel,ApplicationModel>();
+            CreateMap<ApplicationModel, ApplicationViewModel>();
             CreateMap<DepartmentModel, DepartmentViewModel>();
             CreateMap<DepartmentViewModel, DepartmentModel>();
         }

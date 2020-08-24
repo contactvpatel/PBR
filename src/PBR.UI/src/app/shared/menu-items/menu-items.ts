@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface BadgeItem {
   type: string;
@@ -38,49 +38,36 @@ const MENUITEMS = [
         state: 'dashboard',
         short_label: 'D',
         name: 'Dashboard',
-        type: 'sub',
+        type: 'link',
         icon: 'ti-home',
-        children: [
-          {
-            state: 'default',
-            name: 'Default'
-          },
-          {
-            state: 'ecommerce',
-            name: 'Ecommerce'
-          },
-          {
-            state: 'crm',
-            name: 'CRM'
-          },
-          {
-            state: 'analytics',
-            name: 'Analytics',
-            badge: [
-              {
-                type: 'info',
-                value: 'NEW'
-              }
-            ]
-          },
-          {
-            state: 'project',
-            name: 'Project'
-          }
-        ]
-      }, {
-        state: 'powerbi',
-        short_label: 'C',
-        name: 'PowerBiAccount',
-        type: 'sub',
-        icon: 'ti-home',
-        children: [
-          {
-            state: 'powerbiaccount',
-            name: 'PowerBiAccount'
-          }
-]
-
+        // children: [
+        //   {
+        //     state: 'default',
+        //     name: 'Default'
+        //   },
+        //   {
+        //     state: 'ecommerce',
+        //     name: 'Ecommerce'
+        //   },
+        //   {
+        //     state: 'crm',
+        //     name: 'CRM'
+        //   },
+        //   {
+        //     state: 'analytics',
+        //     name: 'Analytics',
+        //     badge: [
+        //       {
+        //         type: 'info',
+        //         value: 'NEW'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     state: 'project',
+        //     name: 'Project'
+        //   }
+        // ]
       },
       // {
       //   state: 'widget',
@@ -112,8 +99,29 @@ const MENUITEMS = [
       //       name: 'Widget Chart Advcance'
       //     }
       //   ]
-      // }
-    ],
+      // },
+      {
+        state: 'admin',
+        short_label: 'P',
+        name: 'Admin',
+        type: 'sub',
+        icon: 'ti-view-grid',
+        children: [
+          {
+            state: 'account',
+            name: 'Account'
+          },
+          {
+            state: 'application',
+            name: 'Application'
+          },
+          {
+            state: 'department',
+            name: 'Department'
+          }
+        ]
+      }
+    ]
   },
   // {
   //   label: 'UI Element',
@@ -160,7 +168,7 @@ const MENUITEMS = [
   //         {
   //           state: 'other',
   //           name: 'Other'
-  //         },
+  //         }
   //       ]
   //     },
   //     {
@@ -187,7 +195,7 @@ const MENUITEMS = [
   //               value: 'New'
   //             }
   //           ]
-  //         },
+  //         }
   //       ]
   //     },
   //     {
@@ -212,13 +220,16 @@ const MENUITEMS = [
   //         {
   //           state: 'basic-elements',
   //           name: 'Form Components'
-  //         }, {
+  //         },
+  //         {
   //           state: 'add-on',
   //           name: 'Form-Elements-Add-On'
-  //         }, {
+  //         },
+  //         {
   //           state: 'advance-elements',
   //           name: 'Form-Elements-Advance'
-  //         }, {
+  //         },
+  //         {
   //           state: 'form-validation',
   //           name: 'Form Validation'
   //         }
@@ -269,13 +280,16 @@ const MENUITEMS = [
   //         {
   //           state: 'basic',
   //           name: 'Basic Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'sizing',
   //           name: 'Sizing Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'border',
   //           name: 'Border Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'styling',
   //           name: 'Styling Table'
   //         }
@@ -291,345 +305,365 @@ const MENUITEMS = [
   //         {
   //           state: 'basic',
   //           name: 'Basic Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'editable',
   //           name: 'Editable'
-  //         }, {
+  //         },
+  //         {
   //           state: 'row-details',
   //           name: 'Row Details Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'paging',
   //           name: 'Paging Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'selection',
   //           name: 'Selection Table'
-  //         }, {
+  //         },
+  //         {
   //           state: 'other',
   //           name: 'Other Table'
   //         }
   //       ]
   //     }
   //   ]
-  // },
-  // {
-  //   label: 'Chart And Map',
-  //   main: [
-  //     {
-  //       state: 'charts',
-  //       short_label: 'C',
-  //       name: 'Charts',
-  //       type: 'sub',
-  //       icon: 'ti-bar-chart-alt',
-  //       children: [
-  //         {
-  //           state: 'google',
-  //           name: 'Google'
-  //         }, {
-  //           state: 'chart-js',
-  //           name: 'ChartJS'
-  //         }, {
-  //           state: 'knob',
-  //           name: 'Knob'
-  //         }, {
-  //           state: 'echart',
-  //           name: 'E-Chart'
-  //         }, {
-  //           state: 'peity',
-  //           name: 'Peity'
-  //         }, {
-  //           state: 'radial',
-  //           name: 'Radial'
-  //         }, {
-  //           state: 'sparklines',
-  //           name: 'Sparklines'
-  //         }, {
-  //           state: 'c3-js',
-  //           name: 'C3 JS'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       state: 'map',
-  //       short_label: 'M',
-  //       name: 'Maps',
-  //       type: 'sub',
-  //       icon: 'ti-map-alt',
-  //       children: [
-  //         {
-  //           state: 'google',
-  //           name: 'Google'
-  //         }, {
-  //           state: 'vector',
-  //           name: 'Vector'
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: 'Pages',
-  //   main: [
-  //     {
-  //       state: 'auth',
-  //       short_label: 'A',
-  //       name: 'Authentication',
-  //       type: 'sub',
-  //       icon: 'ti-unlock',
-  //       children: [
-  //         {
-  //           state: 'login',
-  //           type: 'sub',
-  //           name: 'Login Pages',
-  //           children: [
-  //             {
-  //               state: 'simple',
-  //               name: 'Simple',
-  //               target: true
-  //             }, {
-  //               state: 'header-footer',
-  //               name: 'Header & Footer',
-  //               target: true
-  //             }, {
-  //               state: 'social',
-  //               name: 'Social Icon',
-  //               target: true
-  //             }, {
-  //               state: 'social-header-footer',
-  //               name: 'Social Header & Footer',
-  //               target: true
-  //             }
-  //           ]
-  //         }, {
-  //           state: 'registration',
-  //           type: 'sub',
-  //           name: 'Registration Pages',
-  //           children: [
-  //             {
-  //               state: 'simple',
-  //               name: 'Simple',
-  //               target: true
-  //             }, {
-  //               state: 'header-footer',
-  //               name: 'Header & Footer',
-  //               target: true
-  //             }, {
-  //               state: 'social',
-  //               name: 'Social',
-  //               target: true
-  //             }, {
-  //               state: 'social-header-footer',
-  //               name: 'Social Header & Footer',
-  //               target: true
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           state: 'forgot',
-  //           name: 'Forgot Password',
-  //           target: true
-  //         },
-  //         {
-  //           state: 'lock-screen',
-  //           name: 'Lock Screen',
-  //           target: true
-  //         },
-  //       ]
-  //     },
-  //     {
-  //       state: 'maintenance',
-  //       short_label: 'A',
-  //       name: 'Maintenance',
-  //       type: 'sub',
-  //       icon: 'ti-settings',
-  //       children: [
-  //         {
-  //           state: 'error',
-  //           name: 'Error'
-  //         },
-  //         {
-  //           state: 'coming-soon',
-  //           name: 'Coming Soon'
-  //         },
-  //         {
-  //           state: 'offline-ui',
-  //           name: 'Offline UI',
-  //           target: true
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       state: 'user',
-  //       short_label: 'U',
-  //       name: 'User Profile',
-  //       type: 'sub',
-  //       icon: 'ti-user',
-  //       children: [
-  //         {
-  //           state: 'profile',
-  //           name: 'User Profile'
-  //         }, {
-  //           state: 'card',
-  //           name: 'User Card'
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: 'App',
-  //   main: [
-  //     {
-  //       state: 'crm-contact',
-  //       short_label: 'C',
-  //       name: 'CRM Contact',
-  //       type: 'link',
-  //       icon: 'ti-layout-list-thumb'
-  //     },
-  //     {
-  //       state: 'task',
-  //       short_label: 'T',
-  //       name: 'Task',
-  //       type: 'sub',
-  //       icon: 'ti-check-box',
-  //       children: [
-  //         {
-  //           state: 'list',
-  //           name: 'Task List'
-  //         }, {
-  //           state: 'board',
-  //           name: 'Task Board'
-  //         }, {
-  //           state: 'details',
-  //           name: 'Task Details'
-  //         }, {
-  //           state: 'issue',
-  //           name: 'Issue List'
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: 'Extension',
-  //   main: [
-  //     {
-  //       state: 'editor',
-  //       short_label: 'E',
-  //       name: 'Editor',
-  //       type: 'sub',
-  //       icon: 'ti-pencil-alt',
-  //       children: [
-  //         {
-  //           state: 'froala',
-  //           name: 'Froala WYSIWYG'
-  //         }, {
-  //           state: 'tinymce',
-  //           name: 'Tinymce'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       state: 'invoice',
-  //       short_label: 'I',
-  //       name: 'Invoice',
-  //       type: 'sub',
-  //       icon: 'ti-layout-media-right',
-  //       children: [
-  //         {
-  //           state: 'basic',
-  //           name: 'Invoice'
-  //         }, {
-  //           state: 'summary',
-  //           name: 'Invoice Summary'
-  //         }, {
-  //           state: 'list',
-  //           name: 'Invoice List'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       state: 'file-upload',
-  //       short_label: 'F',
-  //       name: 'File Upload',
-  //       type: 'link',
-  //       icon: 'ti-cloud-up'
-  //     },
-  //     {
-  //       state: 'change-log',
-  //       short_label: 'C',
-  //       name: 'Change Log',
-  //       type: 'link',
-  //       icon: 'ti-list',
-  //       badge: [
-  //         {
-  //           type: 'warning',
-  //           value: '1.0'
-  //         }
-  //       ]
-  //     }
-  //    ]
-  // },
-  // {
-  //   label: 'Other',
-  //   main: [
-  //     {
-  //       state: '',
-  //       short_label: 'M',
-  //       name: 'Menu Levels',
-  //       type: 'sub',
-  //       icon: 'ti-direction-alt',
-  //       children: [
-  //         {
-  //           state: '',
-  //           name: 'Menu Level 2.1',
-  //           target: true
-  //         }, {
-  //           state: '',
-  //           name: 'Menu Level 2.2',
-  //           type: 'sub',
-  //           children: [
-  //             {
-  //               state: '',
-  //               name: 'Menu Level 2.2.1',
-  //               target: true
-  //             },
-  //             {
-  //               state: '',
-  //               name: 'Menu Level 2.2.2',
-  //               target: true
-  //             }
-  //           ]
-  //         }, {
-  //           state: '',
-  //           name: 'Menu Level 2.3',
-  //           target: true
-  //         }, {
-  //           state: '',
-  //           name: 'Menu Level 2.4',
-  //           type: 'sub',
-  //           children: [
-  //             {
-  //               state: '',
-  //               name: 'Menu Level 2.4.1',
-  //               target: true
-  //             },
-  //             {
-  //               state: '',
-  //               name: 'Menu Level 2.4.2',
-  //               target: true
-  //             }
-  //           ]
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       state: 'simple-page',
-  //       short_label: 'S',
-  //       name: 'Simple Page',
-  //       type: 'link',
-  //       icon: 'ti-layout-sidebar-left'
-  //     }
-  //   ]
+  // // },
+  // // {
+  // //   label: 'Chart And Map',
+  // //   main: [
+  // //     {
+  // //       state: 'charts',
+  // //       short_label: 'C',
+  // //       name: 'Charts',
+  // //       type: 'sub',
+  // //       icon: 'ti-bar-chart-alt',
+  // //       children: [
+  // //         {
+  // //           state: 'google',
+  // //           name: 'Google'
+  // //         },
+  // //         {
+  // //           state: 'chart-js',
+  // //           name: 'ChartJS'
+  // //         },
+  // //         {
+  // //           state: 'knob',
+  // //           name: 'Knob'
+  // //         },
+  // //         {
+  // //           state: 'echart',
+  // //           name: 'E-Chart'
+  // //         },
+  // //         {
+  // //           state: 'peity',
+  // //           name: 'Peity'
+  // //         },
+  // //         {
+  // //           state: 'radial',
+  // //           name: 'Radial'
+  // //         },
+  // //         {
+  // //           state: 'sparklines',
+  // //           name: 'Sparklines'
+  // //         },
+  // //         {
+  // //           state: 'c3-js',
+  // //           name: 'C3 JS'
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'map',
+  // //       short_label: 'M',
+  // //       name: 'Maps',
+  // //       type: 'sub',
+  // //       icon: 'ti-map-alt',
+  // //       children: [
+  // //         {
+  // //           state: 'google',
+  // //           name: 'Google'
+  // //         },
+  // //         {
+  // //           state: 'vector',
+  // //           name: 'Vector'
+  // //         }
+  // //       ]
+  // //     }
+  // //   ]
+  // // },
+  // // {
+  // //   label: 'Pages',
+  // //   main: [
+  // //     {
+  // //       state: 'auth',
+  // //       short_label: 'A',
+  // //       name: 'Authentication',
+  // //       type: 'sub',
+  // //       icon: 'ti-unlock',
+  // //       children: [
+  // //         {
+  // //           state: 'login',
+  // //           type: 'sub',
+  // //           name: 'Login Pages',
+  // //           children: [
+  // //             {
+  // //               state: 'simple',
+  // //               name: 'Simple',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'header-footer',
+  // //               name: 'Header & Footer',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'social',
+  // //               name: 'Social Icon',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'social-header-footer',
+  // //               name: 'Social Header & Footer',
+  // //               target: true
+  // //             }
+  // //           ]
+  // //         },
+  // //         {
+  // //           state: 'registration',
+  // //           type: 'sub',
+  // //           name: 'Registration Pages',
+  // //           children: [
+  // //             {
+  // //               state: 'simple',
+  // //               name: 'Simple',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'header-footer',
+  // //               name: 'Header & Footer',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'social',
+  // //               name: 'Social',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: 'social-header-footer',
+  // //               name: 'Social Header & Footer',
+  // //               target: true
+  // //             }
+  // //           ]
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'maintenance',
+  // //       short_label: 'A',
+  // //       name: 'Maintenance',
+  // //       type: 'sub',
+  // //       icon: 'ti-settings',
+  // //       children: [
+  // //         {
+  // //           state: 'error',
+  // //           name: 'Error'
+  // //         },
+  // //         {
+  // //           state: 'coming-soon',
+  // //           name: 'Coming Soon'
+  // //         },
+  // //         {
+  // //           state: 'offline-ui',
+  // //           name: 'Offline UI',
+  // //           target: true
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'user',
+  // //       short_label: 'U',
+  // //       name: 'User Profile',
+  // //       type: 'sub',
+  // //       icon: 'ti-user',
+  // //       children: [
+  // //         {
+  // //           state: 'profile',
+  // //           name: 'User Profile'
+  // //         },
+  // //         {
+  // //           state: 'card',
+  // //           name: 'User Card'
+  // //         }
+  // //       ]
+  // //     }
+  // //   ]
+  // // },
+  // // {
+  // //   label: 'App',
+  // //   main: [
+  // //     {
+  // //       state: 'crm-contact',
+  // //       short_label: 'C',
+  // //       name: 'CRM Contact',
+  // //       type: 'link',
+  // //       icon: 'ti-layout-list-thumb'
+  // //     },
+  // //     {
+  // //       state: 'task',
+  // //       short_label: 'T',
+  // //       name: 'Task',
+  // //       type: 'sub',
+  // //       icon: 'ti-check-box',
+  // //       children: [
+  // //         {
+  // //           state: 'list',
+  // //           name: 'Task List'
+  // //         },
+  // //         {
+  // //           state: 'board',
+  // //           name: 'Task Board'
+  // //         },
+  // //         {
+  // //           state: 'details',
+  // //           name: 'Task Details'
+  // //         },
+  // //         {
+  // //           state: 'issue',
+  // //           name: 'Issue List'
+  // //         }
+  // //       ]
+  // //     }
+  // //   ]
+  // // },
+  // // {
+  // //   label: 'Extension',
+  // //   main: [
+  // //     {
+  // //       state: 'editor',
+  // //       short_label: 'E',
+  // //       name: 'Editor',
+  // //       type: 'sub',
+  // //       icon: 'ti-pencil-alt',
+  // //       children: [
+  // //         {
+  // //           state: 'froala',
+  // //           name: 'Froala WYSIWYG'
+  // //         },
+  // //         {
+  // //           state: 'tinymce',
+  // //           name: 'Tinymce'
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'invoice',
+  // //       short_label: 'I',
+  // //       name: 'Invoice',
+  // //       type: 'sub',
+  // //       icon: 'ti-layout-media-right',
+  // //       children: [
+  // //         {
+  // //           state: 'basic',
+  // //           name: 'Invoice'
+  // //         },
+  // //         {
+  // //           state: 'summary',
+  // //           name: 'Invoice Summary'
+  // //         },
+  // //         {
+  // //           state: 'list',
+  // //           name: 'Invoice List'
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'file-upload',
+  // //       short_label: 'F',
+  // //       name: 'File Upload',
+  // //       type: 'link',
+  // //       icon: 'ti-cloud-up'
+  // //     },
+  // //     {
+  // //       state: 'change-log',
+  // //       short_label: 'C',
+  // //       name: 'Change Log',
+  // //       type: 'link',
+  // //       icon: 'ti-list',
+  // //       badge: [
+  // //         {
+  // //           type: 'warning',
+  // //           value: '1.0'
+  // //         }
+  // //       ]
+  // //     }
+  // //   ]
+  // // },
+  // // {
+  // //   label: 'Other',
+  // //   main: [
+  // //     {
+  // //       state: '',
+  // //       short_label: 'M',
+  // //       name: 'Menu Levels',
+  // //       type: 'sub',
+  // //       icon: 'ti-direction-alt',
+  // //       children: [
+  // //         {
+  // //           state: '',
+  // //           name: 'Menu Level 2.1',
+  // //           target: true
+  // //         },
+  // //         {
+  // //           state: '',
+  // //           name: 'Menu Level 2.2',
+  // //           type: 'sub',
+  // //           children: [
+  // //             {
+  // //               state: '',
+  // //               name: 'Menu Level 2.2.1',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: '',
+  // //               name: 'Menu Level 2.2.2',
+  // //               target: true
+  // //             }
+  // //           ]
+  // //         },
+  // //         {
+  // //           state: '',
+  // //           name: 'Menu Level 2.3',
+  // //           target: true
+  // //         },
+  // //         {
+  // //           state: '',
+  // //           name: 'Menu Level 2.4',
+  // //           type: 'sub',
+  // //           children: [
+  // //             {
+  // //               state: '',
+  // //               name: 'Menu Level 2.4.1',
+  // //               target: true
+  // //             },
+  // //             {
+  // //               state: '',
+  // //               name: 'Menu Level 2.4.2',
+  // //               target: true
+  // //             }
+  // //           ]
+  // //         }
+  // //       ]
+  // //     },
+  // //     {
+  // //       state: 'simple-page',
+  // //       short_label: 'S',
+  // //       name: 'Simple Page',
+  // //       type: 'link',
+  // //       icon: 'ti-layout-sidebar-left'
+  // //     }
+  // //   ]
   // }
 ];
 

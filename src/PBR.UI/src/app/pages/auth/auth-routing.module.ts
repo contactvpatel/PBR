@@ -10,20 +10,8 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'login',
-        loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-      },
-      {
-        path: 'registration',
-        loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule)
-      },
-      {
-        path: 'forgot',
-        loadChildren: () => import('./forgot/forgot.module').then(m => m.ForgotModule)
-      },
-      {
-        path: 'lock-screen',
-        loadChildren: () => import('./lock-screen/lock-screen.module').then(m => m.LockScreenModule)
+        path: 'session-timeout',
+        loadChildren: () => import('./session-timeout/session-timeout.module').then(m => m.SessionTimeoutModule)
       }
     ]
   }
